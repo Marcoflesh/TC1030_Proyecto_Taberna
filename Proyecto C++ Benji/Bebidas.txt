@@ -33,4 +33,3 @@ Vino,15,14.000000,250.000000,0.050000,La_Cetto,México,Nebiolo,Nebiolo,2018
 Vino,10,12.500000,300.000000,0.050000,Marqués,España,Rioja,Tempranillo,2016
 Vino,25,13.200000,180.000000,0.050000,Gato_Negro,Chile,Cabernet,Cabernet_Sauvignon,2020
 Vino,8,14.500000,400.000000,0.050000,Trapiche,Argentina,Malbec,Malbec,2017
-Cerveza,14,0.040000,36.000000,0.050000,Bud_Light,USA,Bud_light_0,Comercial,3.400000
