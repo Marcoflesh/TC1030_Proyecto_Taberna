@@ -1,0 +1,5 @@
+Carlos,Gomez,GOZC900101,AvSiempreViva123,Mexicana,1234,5551234,32,250,40,Gerente
+Ana,Lopez,LOPA950202,CalleFalsa456,Mexicana,5678,5555678,28,150,35,Cajera
+Luis,Martinez,MARL980303,BlvdPrincipal789,Mexicana,9012,5559012,24,120,20,Bodeguero
+Roberto,Sanchez,SANR880404,PlazaCentral12,Mexicana,3456,5553456,38,180,40,Supervisor
+Maria,Fernandez,FERM010505,AvReforma100,Mexicana,7890,5557890,22,120,30,Mostrador

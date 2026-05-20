@@ -1,0 +1,36 @@
+Cerveza,15,4.500000,25.000000,0.050000,Corona,México,Corona_Light,Clara,12.000000
+Cerveza,20,5.000000,30.000000,0.050000,Modelo,México,Modelo_Especial,Pilsner,18.000000
+Cerveza,15,6.000000,40.000000,0.050000,Heineken,Holanda,Heineken,Lager,16.000000
+Cerveza,10,4.200000,22.000000,0.050000,Budweiser,USA,Bud,Lager,10.000000
+Cerveza,30,7.000000,45.000000,0.050000,Guinness,Irlanda,Guinness_Draught,Stout,45.000000
+Ron,20,38.000000,200.000000,0.100000,Bacardí,Puerto Rico,Bacardí_Blanco,Blanco,0
+Ron,15,40.000000,250.000000,0.100000,Havana_Club,Cuba,Havana_7 años,Añejo,0
+Ron,10,42.000000,300.000000,0.100000,Zacapa,Guatemala,Zacapa 23,Gran Reserva,1
+Ron,25,37.000000,180.000000,0.100000,Brugal,R._Dominicana,Brugal_XV,Añejo,0
+Ron,12,35.000000,150.000000,0.100000,Appleton,Jamaica,Appleton_Signature,Dorado,0
+Tequila,15,38.000000,250.000000,0.050000,José Cuervo,México,Tradicional,Jalisco,Plata,0
+Tequila,10,40.000000,300.000000,0.050000,Don Julio,México,Don_Julio_Blanco,Jalisco,Blanco,1
+Tequila,20,38.000000,200.000000,0.050000,Cazadores,México,Cazadores_Reposado,Arandas,Reposado,0
+Tequila,5,42.000000,450.000000,0.050000,Herradura,México,Herradura_Ultra,Amatitán,Añejo,1
+Tequila,25,35.000000,180.000000,0.050000,Sauza,México,Hornitos,Tequila,Reposado,0
+Vodka,20,40.000000,0.000000,0.030000,Absolut,Suecia,Absolut_Blue,Natural,3
+Vodka,15,40.000000,0.000000,0.030000,Smirnoff,USA,Smirnoff_Red,Natural,5
+Vodka,18,37.000000,0.000000,0.030000,Skyy,USA,Skyy_Vodka,Natural,4
+Vodka,10,40.000000,0.000000,0.030000,Belvedere,Polonia,Belvedere_Pure,Premium,6
+Vodka,8,40.000000,0.000000,0.030000,Grey_Goose,Francia,Grey_Goose,Ultra_Premium,7
+Whiskey,10,40.000000,350.000000,0.070000,Jack_Daniels,USA,Old_No.7,4,Roble
+Whiskey,10,42.000000,500.000000,0.070000,Chivas,Escocia,Chivas_12,12,Roble_Francés
+Whiskey,5,45.000000,800.000000,0.070000,Macallan,Escocia,Macallan_18,18,Sherry_Oak
+Whiskey,20,43.000000,200.000000,0.070000,Jim_Beam,USA,Jim_Beam_White,4,Bourbon
+Whiskey,2,46.000000,1500.000000,0.070000,Yamazaki,Japón,Yamazaki_25,25,Mizunara
+Mezcal,12,45.000000,350.000000,0.050000,400_Conejos,México,400_Conejos,Espadín,0
+Mezcal,8,48.000000,500.000000,0.050000,Amores,México,Mezcal_Amores,Tobalá,0
+Mezcal,5,50.000000,700.000000,0.050000,Montelobos,México,Montelobos,Cuishe,1
+Mezcal,10,52.000000,600.000000,0.050000,Ojo_de_Tigre,México,Tigre,Jabalí,0
+Mezcal,15,40.000000,300.000000,0.050000,Brujo,México,Brujo,Cenizo,0
+Vino,20,13.000000,200.000000,0.050000,Concha_y_Toro,Chile,Casillero,Merlot,2019
+Vino,15,14.000000,250.000000,0.050000,La_Cetto,México,Nebiolo,Nebiolo,2018
+Vino,10,12.500000,300.000000,0.050000,Marqués,España,Rioja,Tempranillo,2016
+Vino,25,13.200000,180.000000,0.050000,Gato_Negro,Chile,Cabernet,Cabernet_Sauvignon,2020
+Vino,8,14.500000,400.000000,0.050000,Trapiche,Argentina,Malbec,Malbec,2017
+Cerveza,14,0.040000,36.000000,0.050000,Bud_Light,USA,Bud_light_0,Comercial,3.400000
