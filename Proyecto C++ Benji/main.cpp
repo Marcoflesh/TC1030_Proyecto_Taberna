@@ -320,6 +320,7 @@ int main() {
                                 break;
                             }
                             case 5: {
+                                bar.guardar_todo();
                                 return false;
                             }
                         }
