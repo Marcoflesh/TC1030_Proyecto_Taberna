@@ -24,6 +24,10 @@ int main() {
     cout << "Bienvenido a " << bar.getNombre() << endl;
 
     do {
+        /*
+        Falta Corregir problema de ciclo infinito en caso de escribir un valor
+        que no esté dentro del "do While"
+        */
         cout << "¿Quién eres?" << endl;
         cout << "1. Admin/Empleado" << endl;
         cout << "2. Cliente" << endl;
@@ -320,6 +324,9 @@ int main() {
                                 break;
                             }
                             case 5: {
+                                /*
+                                Falta corregir que el usuario no se pueda ir sin pagar, con solo dar al 5.
+                                */
                                 bar.guardar_todo();
                                 return false;
                             }
