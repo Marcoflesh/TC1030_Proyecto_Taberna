@@ -10,6 +10,6 @@ Pasos:
 8. Disfrutar el programa
 
 Usuario y contraseña opción 1
-user = Marcoflecha
-password = TabernaMou123
+##### user = Marcoflecha
+##### password = TabernaMou123
 
