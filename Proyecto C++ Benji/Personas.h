@@ -117,6 +117,7 @@ void Cliente::registro_consumo(double precio_trago) {
         tragos++;
         cuenta += precio_trago;
         cout << nombre << " LLevas # " << tragos << endl;
+        cout << "Precio Bebida: $" << precio_trago << endl;
         cout << "Subtotal: $" << cuenta << endl;
     }
 }
