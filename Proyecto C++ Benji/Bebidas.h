@@ -32,7 +32,7 @@ public:
     void sumarStock(int cantidad);
     void restarStock(int loot);
 
-    virtual float descontar1(float total); 
+    virtual float descontar(float total); 
     virtual float descontar(int cantidad);
     virtual void servir() = 0; 
     virtual string toString();
@@ -53,7 +53,7 @@ void Bebida::restarStock(int cantidad) {
     stock -= abs(cantidad);
 }
 
-float Bebida::descontar1(float total) {
+float Bebida::descontar(float total) {
     float descontado =precio - (precio * descuento);
     cout << "Se aplico un descuento a " << nombre << " del "
          << (descuento * 100) << "%, nuevo precio: $" << descontado << endl;
@@ -67,7 +67,7 @@ float Bebida::descontar(int cantidad) {
     }
     float total = precio * cantidad;
     cout << "Tomaste " << cantidad << " de " << nombre << endl;
-    return descontar1(total);
+    return descontar(total);
 }
 
 string Bebida::toString() {
