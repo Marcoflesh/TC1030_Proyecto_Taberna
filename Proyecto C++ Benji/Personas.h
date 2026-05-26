@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-// 1. Clase Abstracta
+// 1. Clase Persona
 class Persona {
 protected:
     string nombre, apellido, curp, direccion, nacionalidad;
