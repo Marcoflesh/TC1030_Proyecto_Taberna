@@ -82,7 +82,7 @@ public:
         beverage_preference;}
 
     void registro_consumo(double precio_trago);
-    void mostrar_info() override;
+    void mostrar_info();
     void pagar_cuenta();
 };
 
@@ -180,7 +180,7 @@ public:
     void setPuesto(string position) {puesto = position;}
 
     double calculo_nomina();
-    void mostrar_info() override;
+    void mostrar_info();
 };
 
 Empleado::Empleado(const string& _nombre, const string& _apellido, 

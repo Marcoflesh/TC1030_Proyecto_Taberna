@@ -93,10 +93,10 @@ public:
     string getTipo(){return tipo;}
     float getIbu(){return ibu;}
 
-    void servir() override;
-    string toString() override;
-    float descontar(int cantidad) override;
-    string toTexto() override;
+    void servir();
+    string toString();
+    float descontar(int cantidad);
+    string toTexto();
 };
 
 Cerveza::Cerveza(string _tipo_bebida, int _stock, float _porcentaje, 
@@ -152,10 +152,10 @@ public:
     string getTipoAgave(){return tipo_agave;}
     bool getGusano(){return gusano;}
 
-    void servir() override;
-    string toString() override;
-    float descontar(int cantidad) override;
-    string toTexto() override;
+    void servir();
+    string toString();
+    float descontar(int cantidad);
+    string toTexto();
 };
 
 Mezcal::Mezcal(string _tipo_bebida, int _stock, float _porcentaje, 
@@ -222,10 +222,10 @@ public:
     string getEstilo(){return estilo;}
     bool getEspecias(){return especias;}
 
-    void servir() override;
-    string toString() override;
-    float descontar(int cantidad) override;
-    string toTexto() override;
+    void servir();
+    string toString();
+    float descontar(int cantidad);
+    string toTexto();
 };
 
 Ron::Ron(string _tipo_bebida, int _stock, float _porcentaje, float _precio, 
@@ -295,10 +295,10 @@ public:
     string getCategoria(){return categoria;}
     bool isAgave(){return agave;}
 
-    void servir() override;
-    string toString() override; 
-    float descontar(int cantidad) override;
-    string toTexto() override;
+    void servir();
+    string toString(); 
+    float descontar(int cantidad);
+    string toTexto();
 };
 
 Tequila::Tequila(string _tipo_bebida, int _stock, float _porcentaje, 
@@ -367,9 +367,9 @@ public:
     string getUva(){return uva;}
     int getYearCosecha(){return year_cosecha;}
 
-    void servir() override;
-    string toString() override;
-string toTexto() override;
+    void servir();
+    string toString();
+string toTexto();
 };
 
 Vino::Vino(string _tipo_bebida, int _stock, float _porcentaje, float _precio, 
@@ -417,10 +417,10 @@ public:
     string getSabor(){return sabor;}
     int getDestilaciones(){return destilaciones;}
 
-    void servir() override;
-    string toString() override;
-    float descontar(int cantidad) override;
-    string toTexto() override;
+    void servir();
+    string toString();
+    float descontar(int cantidad);
+    string toTexto();
 };
 
 Vodka::Vodka(string _tipo_bebida, int _stock, float _porcentaje, float _precio, 
@@ -477,10 +477,10 @@ public:
     int getYearsAged() {return years_aged;}
     string getBarrica() {return barrica;}
 
-    void servir() override;
-    string toString() override;
-    float descontar(int cantidad) override;
-    string toTexto() override;
+    void servir();
+    string toString();
+    float descontar(int cantidad);
+    string toTexto();
 };
 
 Whiskey::Whiskey(string _tipo_bebida, int _stock, float _porcentaje, 
