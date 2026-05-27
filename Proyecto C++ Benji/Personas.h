@@ -126,18 +126,19 @@ void Cliente::mostrar_info() {
     cout << "Detalles del cliente" << endl;
     Persona::mostrar_info();
     cout << "Id " << id << endl;
-    cout << "Preferencias de Bebidas " << preferencia_trago << endl;
-    cout << "Tragos tomados" << tragos << endl;
+    cout << "Preferencia de Bebida: " << preferencia_trago << endl;
+    cout << "Tragos tomados: " << tragos << endl;
 }
 
 void Cliente::pagar_cuenta() {
     if(tragos == 0 && cuenta <= 0.0){
-        cout << nombre << "No tienes deuda pendiente." << endl;
+        cout << nombre << ", No tienes deuda pendiente." << endl;
         return;
     }
     char opcion;
     do{
-        cout << "ID cliente: " << id << " Nombre: " << nombre << endl;
+        cout << "\nID cliente: " << id << endl;
+        cout << "Nombre: " << nombre << " " << apellido << endl;
         cout << "Tragos Tomados: " << tragos << endl;
         cout << "SUBTOTAL: $" << cuenta << endl;
         cout << "IVA: 16%" << endl;
@@ -145,12 +146,12 @@ void Cliente::pagar_cuenta() {
         cout << "¿Desea pagar? (s/n): ";
         cin >> opcion;
         if (opcion == 's' || opcion == 'S') {
-            cout << "Pago realizado." << endl;
+            cout << "\nPago realizado." << endl;
             tragos = 0.0;
             cuenta = 0.0;
-            cout << "Muchas gracias por su compra " << nombre << endl;
+            cout << "\nMuchas gracias por su compra " << nombre << endl;
         } else {
-            cout << "No se registró bien su respuesta" << endl;
+            cout << "\nNo se registró bien su respuesta" << endl;
         }
     } while (opcion != 's' && opcion != 'S');
 }
