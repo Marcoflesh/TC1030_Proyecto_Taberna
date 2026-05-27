@@ -31,7 +31,7 @@ public:
     void setTelefono(int phone) {telefono = phone;}
     void setEdad(int age) { edad = age;}
 
-    virtual void mostrar_info();
+    virtual void mostrar_info() = 0;
 };
 
 Persona::Persona(const string& _nombre, const string& _apellido, 
