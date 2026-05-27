@@ -24,10 +24,6 @@ int main() {
     cout << "Bienvenido a " << bar.getNombre() << endl;
 
     do {
-        /*
-        Falta Corregir problema de ciclo infinito en caso de escribir un valor
-        que no esté dentro del "do While"
-        */
         cout << "¿Quién eres?" << endl;
         cout << "1. Admin/Empleado" << endl;
         cout << "2. Cliente" << endl;
@@ -280,53 +276,57 @@ int main() {
             }
             case 2: {
                 bar.mostrar_cliente();
-                cout << "Identificate con el número que está a la izquierda: ";
+                cout << "\nIdentificate con tu ID: ";
                 int id_client;
                 cin >> id_client;
-                if (id_client >= 0 && id_client < bar.total_clientes()) {
-                    Cliente* c_actual = bar.getClientes(id_client);
-                    cout << "Bienvenido " << c_actual->getNombre() << endl;
+                Cliente* c_actual = bar.getClientes(id_client);
+                if (c_actual != nullptr) {
+                    cout << "\nBienvenido " << c_actual->getNombre() << endl;
 
                     int c_opcion;
                     do{
-                        cout << "Que quieres hacer?" << endl;
+                        cout << "\nQue quieres hacer?" << endl;
                         cout << "1. Ver carta de Bebidas" << endl;
                         cout << "2. Ver info de bebida" << endl;
                         cout << "3. Comprar Bebida" << endl;
                         cout << "4. Pagar mi cuenta" << endl;
                         cout << "5. Salir" << endl;
-                        cout << "Escoge: ";
+                        cout << "\nEscoge: ";
                         cin >> c_opcion;
 
                         switch (c_opcion) {
                             case 1: {
+                                cout << "\n";
                                 bar.mostrar_inventario();
                                 break;
                             }
                             case 2: {
+                                cout << "\n";
                                 bar.mostrar_inventario();
-                                cout << "Ingresa el id de la bebida: ";
+                                cout << "\nIngresa el id de la bebida: ";
                                 int id;
                                 cin >> id;
+                                cout << "\n";
                                 bar.mostrar_info_bebida(id);
                                 break;
                             }
                             case 3: {
+                                cout << "\n";
                                 bar.mostrar_inventario();
-                                cout << "Que deseas comprar? Ingresa el id: ";
+                                cout << "\nQue deseas comprar? Ingresa el id: ";
                                 int id_bebida;
                                 cin >> id_bebida;
+                                cout << "\n";
                                 bar.vender_trago(id_bebida, c_actual);
                                 break;
                             }
                             case 4: {
+                                cout << "\n";
                                 c_actual->pagar_cuenta();
                                 break;
                             }
                             case 5: {
-                                /*
-                                Falta corregir que el usuario no se pueda ir sin pagar, con solo dar al 5.
-                                */
+                                cout << "\n";
                                 bar.guardar_todo();
                                 return false;
                             }
@@ -339,9 +339,13 @@ int main() {
             }
             case 3: {
                 bar.guardar_todo();
+                cout << "\n";
                 cout << "Hasta luego" << endl;
                 return false;
             }
+            default:
+                cout << "\nOPCIÓN NO VALIDA\n" << endl; 
+            break;
         }
     } while (true);
 

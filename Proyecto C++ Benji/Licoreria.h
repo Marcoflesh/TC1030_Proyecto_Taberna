@@ -30,7 +30,14 @@ public:
 
     Bebida* getBebida(int i) {return inventario[i];}
     Empleado* getEmpleado(int i) {return lista_empleados[i];}
-    Cliente* getClientes(int i) {return registro_clientes[i];}
+    Cliente* getClientes(int id) {
+        for(int i = 0; i < registro_clientes.size(); i++) {
+            if (registro_clientes[i]->getCliente() == id) {
+                return registro_clientes[i]; 
+            }
+        }
+        return nullptr;
+    }
     int total_bebidas() {return inventario.size();}
     int total_empleados() {return lista_empleados.size();}
     int total_clientes() {return registro_clientes.size();}
@@ -96,12 +103,13 @@ void Licoreria::vender_trago(int index, Cliente* c) {
 
 void Licoreria::mostrar_inventario() {
     cout << "Inventario" << endl;
+    cout << "\n";
     if (inventario.empty()){
         cout << "No hay bebidas en el inventario" << endl;
         return;
     }else {
         for (int i = 0; i < inventario.size(); i++){
-            cout << "(" << i << ")" << inventario[i]->getNombre()
+            cout << "(" << i << ") " << inventario[i]->getNombre()
                 << " Marca " << inventario[i]->getMarca()
                 << " en stock hay: " << inventario[i]->getStock() << endl;
         }
@@ -267,6 +275,7 @@ void Licoreria::editar_empleado(int index) {
 // Clientes
 void Licoreria::mostrar_cliente() {
     cout << "Lista Clientes" << endl;
+    cout << "\n";
     for (int i = 0; i < registro_clientes.size(); i++) {
         cout << i << " " << registro_clientes[i]->getNombre() << " "
         << registro_clientes[i]->getApellido() << " ID "
