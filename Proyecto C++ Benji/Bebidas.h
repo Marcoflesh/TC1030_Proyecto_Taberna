@@ -72,9 +72,9 @@ float Bebida::descontar(int cantidad) {
 
 string Bebida::toString() {
     string texto = "Bebida: " + nombre + "\nMarca: " + marca + "\nPais: " 
-        + pais + "\nPorcentaje de alcohol: " + to_string(porcentaje) 
-        + "\nPrecio: $" + to_string(precio) + "\nCon descuento de : " 
-        + to_string(descuento);
+        + pais + "\nPorcentaje de alcohol: " + to_string(porcentaje) + "%"
+        + "\nPrecio: $" + to_string(precio) + "\nCon descuento de: " 
+        + to_string(descuento * 100) + "%";
     return texto;
 }
 
@@ -125,7 +125,7 @@ float Cerveza::descontar(int cantidad) {
 
 string Cerveza::toString() {
     return Bebida::toString() + "\nTip: " + tipo + "\nIBU (amargor): "
-        + to_string(ibu);
+        + to_string(ibu) + "%";
 }
 
 string Cerveza::toTexto() {
@@ -324,7 +324,7 @@ void Tequila::servir() {
 string Tequila::toString() {
     string pureza = agave ? "100% agave" : "mixto", texto;
     texto = Bebida::toString() + "\nRegion: " + region + "\nCategoria: " 
-    + categoria + "\nHecho 100% de agave: " + pureza; 
+    + categoria + "\nHecho con agave: " + pureza; 
     return texto;
 }
 
