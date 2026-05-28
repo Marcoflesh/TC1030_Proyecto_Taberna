@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <ctime>
 #include <Windows.h>
 #include "Licoreria.h"
 
@@ -10,6 +11,11 @@ bool login();
 
 int main() {
 
+    srand(time(NULL)); // Generar id Clientes random siempre
+
+    /*
+    palabras reservadas para poder mostrar los acentos al ejecutar el código
+    */
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
     setlocale(LC_NUMERIC, "C");
@@ -24,7 +30,7 @@ int main() {
     cout << "Bienvenido a " << bar.getNombre() << endl;
 
     do {
-        cout << "¿Quién eres?" << endl;
+        cout << "\n¿Quién eres?" << endl;
         cout << "1. Admin/Empleado" << endl;
         cout << "2. Cliente" << endl;
         cout << "3. Salir" << endl;
@@ -36,7 +42,7 @@ int main() {
 
                 int opcion;
                 do {
-                    cout << "Que quieres hacer?" << endl;
+                    cout << "\nQue quieres hacer?\n" << endl;
                     cout << "1. Mostrar inventario" << endl;
                     cout << "2. Modificar Stock de Bebidas" << endl;
                     cout << "3. Agregar nueva bebida" << endl;
@@ -71,7 +77,7 @@ int main() {
                             break;
                         }
                         case 3: {
-                            cout << "Que tipo de Bebida quieres agregar?"
+                            cout << "\nQue tipo de Bebida quieres agregar?"
                             << endl;
                             cout << "1. Cerveza" << endl;
                             cout << "2. Mezcal" << endl;
@@ -87,13 +93,13 @@ int main() {
                             int stock;
                             float grados, precio, descuento;
 
-                            cout << "utiliza \"_\" en vez de espacios" << endl;
+                            cin.ignore();
                             cout << "Nombre: ";   
-                            cin >> nombre;
+                            getline(cin, nombre);
                             cout << "Marca: ";    
-                            cin >> marca;
+                            getline(cin, marca);
                             cout << "Pais: ";     
-                            cin >> pais;
+                            getline(cin, pais);
                             cout << "Stock: ";    
                             cin >> stock;
                             cout << "Grados de alcohol: "; 
@@ -107,56 +113,60 @@ int main() {
                                 case 1: {
                                     string tipo_cerveza;
                                     float ibu;
-                                    cout << "Tipo de cerveza ";
-                                    cin >> tipo_cerveza;
+                                    cin.ignore();
+                                    cout << "Tipo de cerveza: ";
+                                    getline(cin, tipo_cerveza);
                                     cout << "IBU (amargor): ";
                                     cin >> ibu;
                                     bar.agregar_bebida(new Cerveza("Cerveza", 
                                         stock, grados, precio, descuento, marca, 
                                         pais, nombre, tipo_cerveza, ibu));
-                                    cout << "Bebida agregada." << endl;
+                                    cout << "\nBebida agregada." << endl;
                                     break;
                                 }
                                 case 2: {
                                     string agave;
                                     int gusano;
+                                    cin.ignore();
                                     cout << "Tipo de agave: ";
-                                    cin >> agave;
-                                    cout << "Tiene gusano? (1=si, 0=no): ";
+                                    getline(cin, agave);
+                                    cout << "Tiene gusano? (1 = si, 0 = no): ";
                                     cin >> gusano;
                                     bar.agregar_bebida(new Mezcal("Mezcal", 
                                         stock, grados, precio, descuento, 
                                         marca, pais, nombre, agave, gusano));
-                                    cout << "Bebida agregada." << endl;
+                                    cout << "\nBebida agregada." << endl;
                                     break;
                                 }
                                 case 3: {
                                     string estilo;
                                     int especias;
+                                    cin.ignore();
                                     cout << "Estilo: ";
-                                    cin >> estilo;
-                                    cout << "Tiene especias? (1=si, 0=no): ";
+                                    getline(cin, estilo);
+                                    cout << "Tiene especias? (1 = si, 0 = no): ";
                                     cin >> especias;
                                     bar.agregar_bebida(new Ron("Ron", stock, 
                                         grados, precio, descuento, marca, pais, 
                                         nombre, estilo, especias));
-                                    cout << "Bebida agregada." << endl;
+                                    cout << "\nBebida agregada." << endl;
                                     break;
                                 }
                                 case 4: {
                                     string region, categoria;
                                     int agave;
+                                    cin.ignore();
                                     cout << "Region: ";
-                                    cin >> region;
+                                    getline(cin, region);
                                     cout << "Categoria: ";
                                     cin >> categoria;
-                                    cout << "100% agave? (1=si, 0=no): ";
+                                    cout << "100% agave? (1 = si, 0 = no): ";
                                     cin >> agave;
                                     bar.agregar_bebida(new Tequila("Tequila", 
                                         stock, grados, precio, descuento, 
                                         marca, pais, nombre, region, categoria, 
                                         agave));
-                                    cout << "Bebida agregada." << endl;
+                                    cout << "\nBebida agregada." << endl;
                                     break;
                                 }
                                 case 5: {
@@ -169,21 +179,22 @@ int main() {
                                     bar.agregar_bebida(new Vino("Vino", stock, 
                                         grados, precio, descuento, marca, pais, 
                                         nombre, uva, year));
-                                    cout << "Bebida agregada." << endl;
+                                    cout << "\nBebida agregada." << endl;
                                     break;
                                 }
                                 case 6: {
                                     string sabor;
                                     int destilaciones;
+                                    cin.ignore();
                                     cout << "Sabor: ";
-                                    cin >> sabor;
+                                    getline(cin, sabor);
                                     cout << "Numero de destilaciones: ";
                                     cin >> destilaciones;
                                     bar.agregar_bebida(new Vodka("Vodka", 
                                         stock, grados, precio, descuento, 
                                         marca, pais, nombre, sabor, 
                                         destilaciones));
-                                    cout << "Bebida agregada." << endl;
+                                    cout << "\nBebida agregada." << endl;
                                     break;
                                 }
                                 case 7: {
@@ -191,12 +202,13 @@ int main() {
                                     int years;
                                     cout << "Años de añejamiento: ";
                                     cin >> years;
+                                    cin.ignore();
                                     cout << "Tipo de barrica: ";
-                                    cin >> barrica;
+                                    getline(cin, barrica);
                                     bar.agregar_bebida(new Whiskey("Whiskey", 
                                         stock, grados, precio, descuento, 
                                         marca, pais, nombre, years, barrica));
-                                    cout << "Bebida agregada." << endl;
+                                    cout << "\nBebida agregada." << endl;
                                     break;
                                 }
                             }
@@ -204,7 +216,7 @@ int main() {
                         }
                         case 4: {
                             bar.mostrar_inventario();
-                            cout << "Ingresa el id de la bebida a eliminar";
+                            cout << "\nIngresa el id de la bebida a eliminar: ";
                             int id;
                             cin >> id;
                             bar.eliminar_bebida(id);
@@ -212,29 +224,35 @@ int main() {
                         }
                         case 5: {
                             bar.mostrar_inventario();
-                            cout << "Ingresa el id de la bebida: ";
+                            cout << "\nIngresa el id de la bebida: ";
                             int id;
                             cin >> id;
+                            cout << "\n";
                             bar.mostrar_info_bebida(id);
                             break;
                         }
                         case 6: {
+                            cout << "\n";
                             bar.mostrar_empleado();
                             break;
                         }
                         case 7: {
+                            cout << "\n";
                             bar.mostrar_empleado();
                             cout << "Número de Empleado: ";
                             int i;
                             cin >> i;
+                            cout << "\n";
                             bar.mostrar_info_empleado(i);
                             break;
                         }
                         case 8: {
+                            cout << "\n";
                             bar.contratar();
                             break;
                         }
                         case 9: {
+                            cout << "\n";
                             bar.mostrar_empleado();
                             cout << "Número de Empleado: ";
                             int i;
@@ -243,26 +261,33 @@ int main() {
                             break;
                         }
                         case 10: {
+                            cout << "\n";
                             bar.mostrar_cliente();
                             break;
                         }
                         case 11: {
+                            cout << "\n";
                             bar.mostrar_cliente();
-                            cout << "Número de cliente: ";
+                            cout << "\nNúmero de cliente: ";
                             int i;
                             cin >> i;
+                            cout << "\n";
                             bar.mostrar_info_cliente(i);
+                            cout << "\n";
                             break;
                         }
                         case 12: {
+                            cout << "\n";
                             bar.registrar_new_cliente();
                             break;
                         }
                         case 13: {
+                            cout << "\n";
                             bar.mostrar_cliente();
-                            cout << "Número del Cliente a editar: ";
+                            cout << "\nNúmero del Cliente a editar: ";
                             int i;
                             cin >> i;
+                            cout << "\n";
                             bar.editar_cliente(i);
                             break;
                         }
@@ -281,7 +306,8 @@ int main() {
                 cin >> id_client;
                 Cliente* c_actual = bar.getClientes(id_client);
                 if (c_actual != nullptr) {
-                    cout << "\nBienvenido " << c_actual->getNombre() << endl;
+                    cout << "\nBienvenid@ " << c_actual->getNombre() << "!" 
+                    << endl;
 
                     int c_opcion;
                     do{
