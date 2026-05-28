@@ -57,9 +57,9 @@ public:
 
     // Clientes
     void mostrar_cliente();
-    void mostrar_info_cliente(int index);
+    void mostrar_info_cliente(int id);
     void registrar_new_cliente();
-    void editar_cliente(int index); 
+    void editar_cliente(int id); 
 
     //archivos
     void cargar_bebidas();
@@ -109,8 +109,8 @@ void Licoreria::mostrar_inventario() {
         return;
     }else {
         for (int i = 0; i < inventario.size(); i++){
-            cout << "(" << i << ") " << inventario[i]->getNombre()
-                << " Marca " << inventario[i]->getMarca()
+            cout << "(" << i << ") " << inventario[i]->getNombre() << ","
+                << " Marca: " << inventario[i]->getMarca() << ","
                 << " en stock hay: " << inventario[i]->getStock() << endl;
         }
     }
@@ -142,7 +142,7 @@ void Licoreria::ajustar_inventario(int index, int cantidad) {
 
 void Licoreria::eliminar_bebida(int index) {
     if (index >= 0 && index < inventario.size()) {
-        cout << "Bebida eliminada: " << inventario[index]->getNombre() 
+        cout << "\nBebida eliminada: " << inventario[index]->getNombre() 
             << endl;
         delete inventario[index];
         inventario.erase(inventario.begin() + index);
@@ -156,7 +156,7 @@ void Licoreria::mostrar_empleado() {
     cout << "Empleados" << endl;
     for (int i = 0; i < lista_empleados.size(); i++) {
         cout << i << " " << lista_empleados[i]->getNombre() << " "
-        << lista_empleados[i]->getApellido() << " " 
+        << lista_empleados[i]->getApellido() << ", " 
         << lista_empleados[i]->getPuesto() << endl;
     }
 }
@@ -170,18 +170,20 @@ void Licoreria::mostrar_info_empleado(int index) {
 }
 
 void Licoreria::contratar() {
-    string nomb, ape, curp, direc, nacion, puesto;
-    int tarj, tel, edad, horas;
+    string nomb, ape, curp, direc, nacion, puesto, tel;
+    int tarj, edad, horas;
     double sueldo;
 
+    cin.ignore();
     cout << "Nombre: ";                     
-    cin >> nomb;
+    getline(cin, nomb);
     cout << "Apellido: ";                   
-    cin >> ape;
+    getline(cin, ape);
     cout << "CURP: ";                       
     cin >> curp;
+    cin.ignore();
     cout << "Direccion: ";                  
-    cin >> direc;
+    getline(cin, direc);
     cout << "Nacionalidad: ";               
     cin >> nacion;
     cout << "Numero de tarjeta: ";          
@@ -199,7 +201,7 @@ void Licoreria::contratar() {
 
     contratar_empleado(new Empleado(nomb, ape, curp, direc, nacion,
         tarj, tel, edad, sueldo, horas, puesto));
-    cout << nomb << " " << ape << "contratado" << endl;
+    cout << nomb << " " << ape << " contratado" << endl;
 }
 
 void Licoreria::editar_empleado(int index) {
@@ -218,53 +220,54 @@ void Licoreria::editar_empleado(int index) {
     cout << "Opcion: ";
     cin >> opcion;
 
+    cin.ignore();
         switch (opcion) {
         case 1: {
             string change;
-            cout << "Nueva direccion: $"; 
-            cin >> change; 
+            cout << "\nNueva direccion: "; 
+            getline(cin, change); 
             e->setDireccion(change);    
             break; 
         }
         case 2: { 
-            int change;    
-            cout << "Nuevo telefono: ";   
-            cin >> change; 
+            string change;    
+            cout << "\nNuevo telefono: ";   
+            getline(cin, change); 
             e->setTelefono(change);     
             break; 
         }
         case 3: { 
             int change;    
-            cout << "Nueva tarjeta: ";    
-            cin >> change; 
+            cout << "\nNueva tarjeta: ";    
+            cin >> change;
             e->setTarjeta(change);      
             break; 
         }
         case 4: {
             int change;
-            cout << "Nueva edad mayor a 18: ";
+            cout << "\nNueva edad mayor a 18: ";
             cin >> change;
             e->setEdad(change); 
             break;
         }
         case 5: { 
             double change; 
-            cout << "Nuevo sueldo: $";    
-            cin >> change; 
+            cout << "\nNuevo sueldo: $";    
+            cin >> change;
             e->setSueldoBase(change);   
             break; 
         }
         case 6: { 
             int change;    
-            cout << "Nuevas horas: ";     
+            cout << "\nNuevas horas: ";     
             cin >> change; 
             e->setHorasTrabajo(change); 
             break; 
         }
         case 7: { 
             string change; 
-            cout << "Nuevo puesto: ";     
-            cin >> change; 
+            cout << "\nNuevo puesto: ";     
+            getline(cin, change); 
             e->setPuesto(change);       
             break; 
         }
@@ -278,31 +281,35 @@ void Licoreria::mostrar_cliente() {
     cout << "\n";
     for (int i = 0; i < registro_clientes.size(); i++) {
         cout << i << " " << registro_clientes[i]->getNombre() << " "
-        << registro_clientes[i]->getApellido() << " ID "
+        << registro_clientes[i]->getApellido() << " ID: "
         << registro_clientes[i]->getCliente() << endl;
     }
 }
 
-void Licoreria::mostrar_info_cliente(int index) {
-    if (index >= 0 && index < registro_clientes.size()) {
-        registro_clientes[index]->mostrar_info();
+void Licoreria::mostrar_info_cliente(int id) {
+    Cliente* cliente = getClientes(id);
+
+    if (cliente != nullptr) {
+        cliente->mostrar_info();
     } else {
-        cout << "ID de cliente no valido." << endl;
+        cout << "ID invalido" << endl;
     }
 }
 
 void Licoreria::registrar_new_cliente() {
-    string nomb, ape, curp, direc, nacion, pref;
-    int    tarj, tel, edad;
+    string nomb, ape, curp, direc, nacion, pref, tel;
+    int    tarj, edad;
 
+    cin.ignore();
     cout << "Nombre: ";           
-    cin >> nomb;
+    getline(cin, nomb);
     cout << "Apellido: ";         
-    cin >> ape;
+    getline(cin, ape);
     cout << "CURP: ";             
     cin >> curp;
+    cin.ignore();
     cout << "Direccion: ";        
-    cin >> direc;
+    getline(cin, direc);
     cout << "Nacionalidad: ";     
     cin >> nacion;
     cout << "Numero de tarjeta: ";
@@ -311,16 +318,23 @@ void Licoreria::registrar_new_cliente() {
     cin >> tel;
     cout << "Edad: ";             
     cin >> edad;
-    cout << "Bebida preferida: "; 
-    cin >> pref;
+    cin.ignore();
+    cout << "Bebida preferidas: "; 
+    getline(cin, pref);
 
     registrar_cliente(new Cliente(nomb, ape, curp, direc, nacion,
         tarj, tel, edad, pref));
     cout <<  nomb << " registrado." << endl;
 }
 
-void Licoreria::editar_cliente(int index) {
-    Cliente* c = registro_clientes[index];
+void Licoreria::editar_cliente(int id) {
+    Cliente* c = getClientes(id);
+
+    if (c == nullptr) {
+        cout << "Id invalido" << endl;
+        return;
+    }
+
     c->mostrar_info();
 
     int opcion;
@@ -333,18 +347,19 @@ void Licoreria::editar_cliente(int index) {
     cout << "Opcion: ";
     cin >> opcion;
 
+    cin.ignore();
     switch (opcion) {
         case 1: { 
             string change; 
             cout << "Nueva direccion: ";    
-            cin >> change; 
+            getline(cin, change); 
             c->setDireccion(change);        
             break; 
         }
         case 2: { 
-            int change;    
+            string change;    
             cout << "Nuevo telefono: ";     
-            cin >> change; 
+            getline(cin, change); 
             c->setTelefono(change);         
             break; 
         }
@@ -365,7 +380,7 @@ void Licoreria::editar_cliente(int index) {
         case 5: { 
             string change; 
             cout << "Nueva preferencia: ";  
-            cin >> change; 
+            getline(cin, change); 
             c->setPreferenciaTrago(change); 
             break; 
         }
@@ -457,7 +472,7 @@ void Licoreria::cargar_clientes() {
         getline(ss, pref, ','); getline(ss, id, ','); 
         getline(ss, tragos, ','); getline(ss, cuenta, ',');
         registrar_cliente(new Cliente(nomb, ape, curp, direc, nacion, 
-            stoi(tarj), stoi(tel), stoi(edad), pref, stoi(id), stoi(tragos),
+            stoi(tarj), tel, stoi(edad), pref, stoi(id), stoi(tragos),
             stod(cuenta)));
     }
     archivo.close();
@@ -479,7 +494,7 @@ void Licoreria::cargar_empleados() {
         getline(ss, sueldo, ','); getline(ss, horas, ',');
         getline(ss, puesto, ','); 
         contratar_empleado(new Empleado(nomb, ape, curp, direc, nacion, 
-            stoi(tarj), stoi(tel), stoi(edad), stod(sueldo), stoi(horas),
+            stoi(tarj), tel, stoi(edad), stod(sueldo), stoi(horas),
             puesto));
         }
     archivo.close();   
@@ -547,6 +562,6 @@ void Licoreria::guardar_todo() {
     guardar_clientes();
     guardar_empleados();
 
-    cout << "Cambios guardados con éxito" << endl;
+    cout << "\nCambios guardados con éxito" << endl;
 }
 #endif
