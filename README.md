@@ -16,6 +16,13 @@ Es un juego/sistema de gestión de una taberna/bar en el que se podría ser tant
 - Compilador **g++**
 - Preferentemente sistema operativo **Windows** (para mostrar correctamente acentos y caracteres especiales en la consola)
 - Todos los archivos `.txt` deben estar en la **misma carpeta** que el ejecutable al momento de correr el programa
+- En caso de ejecutar el programa en Linux, se tiene que entrar al archivo `main.cpp` y eliminar el código de abajo para poder ejecutar debidamente el programa
+  ```
+  #include <Windows.h>
+  SetConsoleOutputCP(CP_UTF8);
+  SetConsoleCP(CP_UTF8);
+  setlocale(LC_NUMERIC, "C");
+  ```
 
 ---
 
@@ -68,6 +75,12 @@ Los archivos se reescriben completos al guardar usando un archivo temporal (`_tm
 ---
 
 ## Casos que hacen que el programa deje de funcionar
+
+### Uso de Linux
+
+| Situación | Efecto |
+|---|---|
+|**Compilar el código sin haber cambiado main** | Al no borrar las líneas de código que se mencionaron en los `Requisitos`, el programa no compila y por ende, no se puede ejecutar |
 
 ### Entradas inválidas desde la consola
 
