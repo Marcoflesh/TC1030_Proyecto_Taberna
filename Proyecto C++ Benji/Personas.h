@@ -3,18 +3,17 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
 
 // 1. Clase Persona
 class Persona {
 protected:
-    string nombre, apellido, curp, direccion, nacionalidad;
-    int no_tarjeta, telefono, edad;
+    string nombre, apellido, curp, direccion, nacionalidad, telefono;
+    int no_tarjeta, edad;
 
 public:
     Persona(const string& _nombre, const string& _apellido, 
         const string& _curp, string _direccion, const string& _nacionalidad, 
-        int _no_tarjeta, int _telefono, int _edad);
+        int _no_tarjeta, string _telefono, int _edad);
     virtual ~Persona(){}
 
     string getNombre() {return nombre;}
@@ -23,12 +22,12 @@ public:
     string getDireccion() {return direccion;}
     string getNacionalidad() {return nacionalidad;}
     int getTarjeta() {return no_tarjeta;}
-    int getTelefono() {return telefono;}
+    string getTelefono() {return telefono;}
     int getEdad() {return edad;}
 
     void setDireccion(string direction) {direccion = direction;}
     void setTarjeta(int card) {no_tarjeta = card;}
-    void setTelefono(int phone) {telefono = phone;}
+    void setTelefono(string phone) {telefono = phone;}
     void setEdad(int age) { edad = age;}
 
     virtual void mostrar_info() = 0;
@@ -36,7 +35,7 @@ public:
 
 Persona::Persona(const string& _nombre, const string& _apellido, 
         const string& _curp, string _direccion, const string& _nacionalidad, 
-        int _no_tarjeta, int _telefono, int _edad) : nombre(_nombre), 
+        int _no_tarjeta, string _telefono, int _edad) : nombre(_nombre), 
         apellido(_apellido), curp(_curp), direccion(_direccion),
         nacionalidad(_nacionalidad), no_tarjeta(_no_tarjeta), 
         telefono(_telefono), edad(_edad) {}
@@ -61,12 +60,12 @@ private:
 public:
     Cliente(const string& _nombre, const string& _apellido, 
         const string& _curp, string _direccion, const string& _nacionalidad, 
-        int _no_tarjeta, int _telefono, int _edad, 
+        int _no_tarjeta, string _telefono, int _edad, 
         const string& _preferencia_trago);
 
     Cliente(const string& _nombre, const string& _apellido, const string& _curp,
         string _direccion, const string& _nacionalidad, int _tarjeta,
-        int _telefono, int _edad, const string& _preferencia, int _id, 
+        string _telefono, int _edad, const string& _preferencia, int _id, 
         int _tragos, double _cuenta);
     
     virtual ~Cliente(){}
@@ -88,7 +87,7 @@ public:
 
 Cliente::Cliente(const string& _nombre, const string& _apellido, 
     const string& _curp, string _direccion, const string& _nacionalidad,
-    int _tarjeta, int _telefono, int _edad, const string& _preferencia)
+    int _tarjeta, string _telefono, int _edad, const string& _preferencia)
     : Persona(_nombre, _apellido, _curp, _direccion, _nacionalidad,
         _tarjeta, _telefono, _edad) {
         preferencia_trago = _preferencia;
@@ -99,7 +98,7 @@ Cliente::Cliente(const string& _nombre, const string& _apellido,
 
 Cliente::Cliente(const string& _nombre, const string& _apellido, 
     const string& _curp, string _direccion, const string& _nacionalidad,
-    int _tarjeta, int _telefono, int _edad, const string& _preferencia, 
+    int _tarjeta, string _telefono, int _edad, const string& _preferencia, 
     int _id, int _tragos, double _cuenta) : Persona(_nombre, _apellido, _curp, 
         _direccion, _nacionalidad, _tarjeta, _telefono, _edad) {
     preferencia_trago = _preferencia;
@@ -167,7 +166,7 @@ private:
 public:
     Empleado(const string& _nombre, const string& _apellido, 
     const string& _curp, string _direccion, const string& _nacionalidad, 
-    int _tarjeta, int _telefono, int _edad, double _sueldo, int _horas_trabajo, 
+    int _tarjeta, string _telefono, int _edad, double _sueldo, int _horas_trabajo, 
     string _puesto);
 
     virtual ~Empleado(){}
@@ -186,7 +185,7 @@ public:
 
 Empleado::Empleado(const string& _nombre, const string& _apellido, 
         const string& _curp, string _direccion,  const string& _nacionalidad, 
-        int _tarjeta, int _telefono, int _edad, double _sueldo, 
+        int _tarjeta, string _telefono, int _edad, double _sueldo, 
         int _horas_trabajo, string _puesto) : Persona(_nombre, _apellido, 
             _curp, _direccion, _nacionalidad, _tarjeta, _telefono, _edad) {
     sueldo_base        = _sueldo;
