@@ -1,15 +1,93 @@
 # TC1030_Proyecto_Taberna
-Pasos:
-1. Descargar la carpeta en formato .zip con todos los archivos
-2. Descomprimir el archivo.zip
-3. Dar click derecho en la carpeta y seleccionar "Propiedades"
-4. Copiar "path" de la carpeta
-5. Abrir Terminal/Powershell teclear *cd* y pegar el "path" de la carpeta
-6. Una vez dentro la ubicación de la carpeta en la terminal, escribir g++ main.cpp -o taberna
-7. Esperar a que compile, una vez terminado el compilado escriba *.\taberna.exe*
-8. Disfrutar el programa
 
-Usuario y contraseña opción 1
-##### user = Marcoflecha
-##### password = TabernaMou123
+**Marco Antonio Hernández Roque**  
+Sistema de gestión para una licorería desarrollado en C++ como proyecto final de la materia **TC1030 (Programación Orientada a Objetos)**. Implementa herencia, polimorfismo, sobrecarga y sobreescritura de métodos, y persistencia de datos en archivos `.txt`.
 
+---
+
+## Requisitos
+
+- Compilador **g++**
+- Preferentemente s0istema operativo **Windows** (para mostrar correctamente acentos y caracteres especiales en la consola)
+- Todos los archivos `.txt` deben estar en la **misma carpeta** que el ejecutable al momento de correr el programa
+
+---
+
+## Instalación y ejecución
+
+1. Descarga el repositorio como `.zip` y descomprimirlo.
+  
+2. Abre una terminal (PowerShell o CMD) y navega a la carpeta:
+   ```
+   cd ruta\a\la\carpeta
+   ```
+3. Compila:
+   ```
+   g++ main.cpp -o taberna
+   ```
+4. Ejecuta:
+   ```
+   .\taberna.exe
+   ```
+
+---
+
+## Acceso administrador
+
+| Campo       | Valor            |
+|-------------|------------------|
+| Usuario     | `Marcoflecha`    |
+| Contraseña  | `TabernaMou123`  |
+
+---
+
+## Estructura del proyecto
+
+```
+TC1030_Proyecto_Taberna/
+├── main.cpp        — Punto de entrada y menús de navegación
+├── Bebidas.h       — Clase base Bebida y 7 subclases (Cerveza, Mezcal, Ron, Tequila, Vino, Vodka, Whiskey)
+├── Personas.h      — Clase base Persona, Cliente y Empleado
+├── Licoreria.h     — Clase central: gestión de inventario, personal y clientes
+├── Bebidas.txt     — Inventario persistente
+├── Clientes.txt    — Registro persistente de clientes
+└── Empleados.txt   — Registro persistente de empleados
+```
+
+---
+
+## Formato de los archivos `.txt`
+
+Los archivos se reescriben completos al guardar usando un archivo temporal (`_tmp.txt`) para evitar pérdida de datos si el programa falla a mitad del proceso.
+
+---
+
+## Casos que hacen que el programa deje de funcionar
+
+### Entradas inválidas desde la consola
+
+| Situación | Efecto |
+|---|---|
+| **Escribir una letra donde se espera un número** (edad, stock, índice, opción de menú) | `cin` entra en estado de error. Los siguientes `cin >>` se saltan sin leer nada, causando que variables queden sin inicializar o con basura, lo que puede crashear el programa en la siguiente operación |
+| **Escribir espacios en campos de texto** usando `cin >>` | `cin` corta en el primer espacio. El resto de la palabra queda en el buffer y se lee como el siguiente campo, desalineando todos los inputs siguientes |
+| **Dejar el campo vacío** y presionar Enter en un `cin >>` numérico | `cin` espera indefinidamente provocando un bucle infinito |
+
+### Archivos `.txt`
+
+| Situación | Efecto |
+|---|---|
+| **Falta un archivo `.txt`** al iniciar el programa | `cargar` detecta `!is_open()` y retorna; el vector queda vacío. Cualquier intento de acceder crashea con comportamiento indefinido |
+| **Una línea del archivo tiene menos columnas de las esperadas** | `stoi()` / `stod()` recibe un `string` vacío y lanza `std::invalid_argument`, terminando el programa abruptamente |
+| **El archivo contiene una coma dentro de un campo** (ej. `Vino, Cerveza y Whiskey`) | El `getline(ss, campo, ',')` lo parte en dos, desalineando todos los campos siguientes de esa línea |
+| **Ejecutar el programa desde una carpeta diferente a donde están los `.txt`** | Los archivos no se encuentran, los vectores quedan vacíos y el programa corre sin datos |
+
+---
+
+## Referencias bibliográficas
+
+- GeeksforGeeks. (2023). *File handling in C++*. https://www.geeksforgeeks.org/file-handling-c-classes/
+- GeeksforGeeks. (2023). *Vector in C++ STL*. https://www.geeksforgeeks.org/vector-in-cpp-stl/
+- GeeksforGeeks. (2023). *getline() function in C++*. https://www.geeksforgeeks.org/getline-string-c/
+- Stack Overflow. (2012). *How to read a file line by line in C++*. https://stackoverflow.com/questions/7868936/read-file-line-by-line-using-ifstream-in-c
+- Stack Overflow. (2011). *Why does cin >> skip leading whitespace but getline does not?* https://stackoverflow.com/questions/5739937/using-getlinecin-s-after-cin
+- Stack Overflow en Español. (2018). *Leer/escribir caracteres especiales del español (acentos, ñ) en una aplicación C++ en Windows*. https://es.stackoverflow.com/questions/151363/leer-escribir-caracteres-especiales-del-espa%C3%B1ol-acentos-%C3%B1-en-una-aplicaci
