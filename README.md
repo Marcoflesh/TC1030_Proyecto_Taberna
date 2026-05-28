@@ -1,14 +1,20 @@
 # TC1030_Proyecto_Taberna
 
 **Marco Antonio Hernández Roque**  
-Sistema de gestión para una licorería desarrollado en C++ como proyecto final de la materia **TC1030 (Programación Orientada a Objetos)**. Implementa herencia, polimorfismo, sobrecarga y sobreescritura de métodos, y persistencia de datos en archivos `.txt`.
+Sistema de gestión para una taberna/bar desarrollado en C++ como proyecto final de la materia **TC1030 (Programación Orientada a Objetos)**. 
+
+---
+
+## ¿De qué trata?
+Es un juego/sistema de gestión de una taberna/bar en el que se podría ser tanto cliente como empleado. Dependiendo la opción que se escoja se implementará un listado de opciones por hacer, en el caso de los `Empleado` se podría agregar/quitar/modificar cualquier bebida que esté dentro del inventario, se puede ver la información de cada bebida, se puede contratar/modificar a un empleado al igual que registrar/modificar un cliente nuevo. Si se escoge la opción de `Cliente`, este puede interactuar con el bar mediante ver la carta, comprar x cantidad de bebidas, pagar su cuenta o inclusive ver información más detallada de una bebida en específico.
+##### Todo esto es realizado mediante el manejo de archivos .txt para la permanencia de los cambios de los datos, al igual que el manejo de la programación orientada a objetos en C++ mediante el uso de clases. 
 
 ---
 
 ## Requisitos
 
 - Compilador **g++**
-- Preferentemente s0istema operativo **Windows** (para mostrar correctamente acentos y caracteres especiales en la consola)
+- Preferentemente sistema operativo **Windows** (para mostrar correctamente acentos y caracteres especiales en la consola)
 - Todos los archivos `.txt` deben estar en la **misma carpeta** que el ejecutable al momento de correr el programa
 
 ---
@@ -44,14 +50,13 @@ Sistema de gestión para una licorería desarrollado en C++ como proyecto final 
 ## Estructura del proyecto
 
 ```
-TC1030_Proyecto_Taberna/
-├── main.cpp        — Punto de entrada y menús de navegación
-├── Bebidas.h       — Clase base Bebida y 7 subclases (Cerveza, Mezcal, Ron, Tequila, Vino, Vodka, Whiskey)
-├── Personas.h      — Clase base Persona, Cliente y Empleado
-├── Licoreria.h     — Clase central: gestión de inventario, personal y clientes
-├── Bebidas.txt     — Inventario persistente
-├── Clientes.txt    — Registro persistente de clientes
-└── Empleados.txt   — Registro persistente de empleados
+── main.cpp        — Punto de entrada y menús de navegación
+── Bebidas.h       — Clase base Bebida y 7 subclases (Cerveza, Mezcal, Ron, Tequila, Vino, Vodka, Whiskey)
+── Personas.h      — Clase base Persona, Cliente y Empleado
+── Licoreria.h     — Clase central: gestión de inventario, personal y clientes
+── Bebidas.txt     — Inventario persistente
+── Clientes.txt    — Registro persistente de clientes
+── Empleados.txt   — Registro persistente de empleados
 ```
 
 ---
