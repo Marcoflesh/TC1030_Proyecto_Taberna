@@ -47,7 +47,7 @@ Es un juego/sistema de gestión de una taberna/bar en el que se podría ser tant
 
 ## Acceso administrador
 
-| Campo       | Valor            |
+|        |             |
 |-------------|------------------|
 | Usuario     | `Marcoflecha`    |
 | Contraseña  | `TabernaMou123`  |
