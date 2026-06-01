@@ -33,7 +33,7 @@ Link de tutorial para instalar el compilador g++ para poder ejecutar el proyecto
 
 ---
 
-## Instalación y ejecución
+## Instalación y ejecución del programa
 
 1. Descarga el repositorio como `.zip` y descomprimirlo.
   
