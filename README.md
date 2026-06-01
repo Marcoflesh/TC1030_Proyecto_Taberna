@@ -26,6 +26,13 @@ Es un juego/sistema de gestión de una taberna/bar en el que se podría ser tant
 
 ---
 
+## Instalación `g++` para Compilar código
+
+Link de tutorial para instalar el compilador g++ para poder ejecutar el proyecto
+- https://code.visualstudio.com/docs/languages/cpp#_example-install-mingwx64
+
+---
+
 ## Instalación y ejecución
 
 1. Descarga el repositorio como `.zip` y descomprimirlo.
