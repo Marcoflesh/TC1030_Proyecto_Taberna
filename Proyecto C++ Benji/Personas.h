@@ -127,6 +127,7 @@ void Cliente::mostrar_info() {
     cout << "Id " << id << endl;
     cout << "Preferencia de Bebida: " << preferencia_trago << endl;
     cout << "Tragos tomados: " << tragos << endl;
+    cout << "Cuenta: " << cuenta << endl;
 }
 
 void Cliente::pagar_cuenta() {
