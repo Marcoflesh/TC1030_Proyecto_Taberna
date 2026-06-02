@@ -30,7 +30,7 @@ public:
     void setTelefono(string phone) {telefono = phone;}
     void setEdad(int age) { edad = age;}
 
-    virtual void mostrar_info() = 0;
+    virtual void mostrar_info();
 };
 
 Persona::Persona(const string& _nombre, const string& _apellido, 
