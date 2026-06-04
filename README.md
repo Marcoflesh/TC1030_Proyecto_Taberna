@@ -6,7 +6,7 @@ Sistema de gestión para una taberna/bar desarrollado en C++ como proyecto final
 ---
 
 ## ¿De qué trata?
-Es un juego/sistema de gestión de una taberna/bar en el que se podría ser tanto cliente como empleado. Dependiendo la opción que se escoja se implementará un listado de opciones por hacer, en el caso de los `Empleado` se podría agregar/quitar/modificar cualquier bebida que esté dentro del inventario, se puede ver la información de cada bebida, se puede contratar/modificar a un empleado al igual que registrar/modificar un cliente nuevo. Si se escoge la opción de `Cliente`, este puede interactuar con el bar mediante ver la carta, comprar x cantidad de bebidas, pagar su cuenta o inclusive ver información más detallada de una bebida en específico.
+Es un juego/sistema de gestión de una taberna/bar en el que se podría ser tanto cliente como empleado. Dependiendo la opción que se escoja se implementará un listado de opciones por hacer, en el caso de los `Empleado` se podría agregar/quitar/modificar cualquier bebida que esté dentro del inventario, se puede ver la información de cada bebida, se puede contratar/modificar a un empleado al igual que registrar/modificar un cliente nuevo. Si se escoge la opción de `Cliente`, este tiene ingresar con su ID p.ej. `100031`. Con esto el cliente ver la carta, comprar x cantidad de bebidas mediante la selección de la bebida con el número que se encuentra en el paréntesis, pagar su cuenta o inclusive ver información más detallada de una bebida en específico.
 ##### Todo esto es realizado mediante el manejo de archivos .txt para la permanencia de los cambios de los datos, al igual que el manejo de la programación orientada a objetos en C++ mediante el uso de clases. 
 
 ---
@@ -16,7 +16,7 @@ Es un juego/sistema de gestión de una taberna/bar en el que se podría ser tant
 - Compilador **g++**
 - Preferentemente sistema operativo **Windows** (para mostrar correctamente acentos y caracteres especiales en la consola)
 - Todos los archivos `.txt` deben estar en la **misma carpeta** que el ejecutable al momento de correr el programa
-- En caso de ejecutar el programa en Linux, se tiene que entrar al archivo `main.cpp` y eliminar el código de abajo para poder ejecutar debidamente el programa
+- En caso de ejecutar el programa en Linux o MacOS, se tiene que entrar al archivo `main.cpp` y eliminar el código de abajo para poder ejecutar debidamente el programa
   ```
   #include <Windows.h>
   SetConsoleOutputCP(CP_UTF8);
@@ -83,7 +83,7 @@ Los archivos se reescriben completos al guardar usando un archivo temporal (`_tm
 
 ## Casos que hacen que el programa deje de funcionar
 
-### Uso de Linux
+### Uso de Linux o MacOS
 
 | Situación | Efecto |
 |---|---|
