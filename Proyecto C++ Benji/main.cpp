@@ -1,20 +1,23 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <ctime>
-#include <Windows.h>
+#include <iostream> // Salida de datos
+#include <string> // Permite generar y usar strings
+#include <ctime> // Se usa para generar números aleatorios siempre
+#include <Windows.h> // Se usa para que la terminal pueda mostrar acentos
+// Importa la clase de Licoreria
 #include "Licoreria.h"
 
 using namespace std;
 
+// Función que inicia sesión a los administradores
 bool login();
 
 int main() {
 
-    srand(time(NULL)); // Generar id Clientes random siempre
+    // Función que ayuda a generar ID random de clientes siempre
+    srand(time(NULL)); 
 
     /*
-    palabras reservadas para poder mostrar los acentos al ejecutar el código
+    funciones de Windows.h para poder mostrar los acentos al ejecutar 
+    el código
     */
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);

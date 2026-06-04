@@ -1,11 +1,23 @@
+/*
+ * Proyecto Licorería - Clase Licoreria (El Administrador de Todo)
+ * Marco Antonio Hernández Roque
+ * A01709802
+ * 12/06/2026
+ * Materia: TC1030 Programación Orientada a Objetos
+ * * Esta clase funciona como el cerebro del sistema. Guarda en vectores 
+ * todas las bebidas del inventario, los empleados contratados y los clientes. 
+ * También tiene las funciones para leer y escribir los archivos de texto.
+ */
 #ifndef LICORERIA_H
 #define LICORERIA_H
 
 #include <iostream>
-#include <vector>
+#include <vector> // sirve para guardar objetos en arreglos
 #include <string>
-#include <fstream>
-#include <sstream>
+#include <fstream> // Sirve para poder cargar los archivos
+#include <sstream> // Sirve para poder guardar los archivos
+
+// Importa las clases
 #include "Bebidas.h"
 #include "Personas.h"
 
@@ -13,55 +25,90 @@ using namespace std;
 
 class Licoreria {
 private:
+    // Se crean arreglos mediante vectores para guardar objetos
     string nombre;
     vector <Bebida*> inventario;
     vector <Empleado*> lista_empleados;
     vector <Cliente*> registro_clientes;
 
 public:
-    Licoreria(string _nombre);
-    virtual ~Licoreria();
+    Licoreria(string _nombre); // Muestra el nombre de la Licoreia
+    virtual ~Licoreria(); // Método Destructor
 
     string getNombre();
 
+    // Métodos para agregar nuevos objetos
     void agregar_bebida(Bebida* b);
     void contratar_empleado(Empleado* e);
     void registrar_cliente(Cliente* c);
 
+    // Getters
     Bebida* getBebida(int i);
     Empleado* getEmpleado(int i);
     Cliente* getClientes(int id);
-    int total_bebidas();
-    int total_empleados();
-    int total_clientes();
 
-    // inventario
+    // Métodos para el manejo del inventario
+
+    /*
+        Registra la selección de bebida del Cliente, resta la bebida 
+        del stock y se lo suma a la cuenta del Cliente 
+     */
     void vender_trago(int index, Cliente* c);
-    void mostrar_inventario();
+    void mostrar_inventario(); // Muestra el inventario de bebidas
+    /*
+        Método que muestra la información completa de una bebida en 
+        específico seleccionada por el cliente
+    */
     void mostrar_info_bebida(int index);
-    void ajustar_inventario(int index, int cantidad);
-    void eliminar_bebida(int index);
+    /*
+        Agrega o quita x cantida de bebidas al inventario
+    */
+    void ajustar_inventario(int index, int cantidad); 
+    void eliminar_bebida(int index); // Elimina por completo bebida del inventario
     
     // Empleados
-    void mostrar_empleado();
-    void mostrar_info_empleado(int index);
-    void contratar();
-    void editar_empleado(int index);
+    void mostrar_empleado(); // Muestra lista de empleados
+    void mostrar_info_empleado(int index); // Muestra info completa de 1 empelado
+    void contratar(); // Agrega empleados nuevos
+    /*
+        Edita un atributo de un empleado en específico, como (telefono,
+        dirección, edad, puesto, tarjeta, horas de trabajo y sueldo)
+    */
+    void editar_empleado(int index); 
 
     // Clientes
-    void mostrar_cliente();
+    void mostrar_cliente(); // Muestra la lista de Clientes
+    /*
+        Muestra la información de un cliente en específico mediante el 
+        ingreso de su ID personal que se crea con su constructor
+    */
     void mostrar_info_cliente(int id);
-    void registrar_new_cliente();
+    void registrar_new_cliente(); // Registra un nuevo cliente al sistema
+    /*
+        Edita un atributo de un cliente en específico, como (telefono,
+        dirección, edad, tarjeta y preferencia de bebida)
+    */
     void editar_cliente(int id); 
 
     //archivos
-    void cargar_bebidas();
-    void cargar_clientes();
-    void cargar_empleados();
-    void guardar_bebidas();
+    void cargar_bebidas(); // Carga la lista de bebidas de los archivos .txt
+    void cargar_clientes(); // Carga la lista de clientes de los archivos .txt
+    void cargar_empleados(); // Carga la lista de empleados de los archivos .txt
+
+    /*
+        Se crean archivos temporales donde se guardan todos los cambios 
+        al inventario, clientes y empleados; realizados por el usuario 
+        dentro del programa y cambia su nombre al archivo original 
+        sobreescribiendo su información y guardando los cambios
+    */
+    void guardar_bebidas(); 
     void guardar_clientes(); 
     void guardar_empleados();
-    void guardar_todo(); 
+    /*
+        Método que guarda los 3 métodos de guardado en una sola función
+        para ser usada en main
+    */
+    void guardar_todo();
 
 };
 
@@ -84,9 +131,6 @@ Cliente* Licoreria::getClientes(int id) {
         return nullptr;
     }
 
-int Licoreria::total_bebidas() {return inventario.size();}
-int Licoreria::total_empleados() {return lista_empleados.size();}
-int Licoreria::total_clientes() {return registro_clientes.size();}
 
 // Inventario
 Licoreria::~Licoreria() {

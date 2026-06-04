@@ -1,21 +1,40 @@
+/*
+ * Proyecto Licorería - Clase Persona, Cliente y Empleado
+ * Marco Antonio Hernández Roque
+ * A01709802
+ * 12/06/2026
+ * Materia: TC1030 Programación Orientada a Objetos
+ * * En este archivo se creó la clase base Persona y sus dos hijas: Cliente y Empleado. 
+ * Sirve para guardar los datos básicos de cualquier persona involucrada en el 
+ * negocio y manejar cosas específicas como las cuentas de consumo o las nóminas.
+ */
 #ifndef PERSONAS_H
 #define PERSONAS_H
 
 #include <iostream>
 #include <string>
 
-// 1. Clase Persona
+/**
+ * Persona es la clase padre. Guarda los datos que todos comparten (nombre, 
+ * edad, teléfono, dirección, etc.) para no tener que repetir código después.
+ */
 class Persona {
+    // atributos
 protected:
     string nombre, apellido, curp, direccion, nacionalidad, telefono;
     int no_tarjeta, edad;
 
+    // metodos
 public:
+    // Constructor
     Persona(const string& _nombre, const string& _apellido, 
         const string& _curp, string _direccion, const string& _nacionalidad, 
         int _no_tarjeta, string _telefono, int _edad);
+    
+    // Método Destructor
     virtual ~Persona(){}
 
+    // Getters y setters
     string getNombre();
     string getApellido();
     string getCurp();
@@ -29,7 +48,7 @@ public:
     void setTelefono(string phone);
     void setEdad(int age);
 
-    virtual void mostrar_info();
+    virtual void mostrar_info(); // imprime en la pantalla datos personales
 };
 
 Persona::Persona(const string& _nombre, const string& _apellido, 
@@ -63,7 +82,10 @@ void Persona::mostrar_info() {
     cout << "Edad: " << edad << endl;
 }
 
-// 2. Cliente
+/**
+ * Cliente hereda de Persona. Además de sus datos personales, le añade un ID, 
+ * cuántos tragos lleva y una cuenta de dinero para saber cuánto debe pagar.
+ */
 class Cliente: public Persona {
 private:
     int id, tragos;
@@ -71,18 +93,22 @@ private:
     string preferencia_trago;
 
 public:
+    // Constructor hecho para las funciones del programa en terminal
     Cliente(const string& _nombre, const string& _apellido, 
         const string& _curp, string _direccion, const string& _nacionalidad, 
         int _no_tarjeta, string _telefono, int _edad, 
         const string& _preferencia_trago);
 
+    // Constructor para poder guardar los datos en los archivos .txt
     Cliente(const string& _nombre, const string& _apellido, const string& _curp,
         string _direccion, const string& _nacionalidad, int _tarjeta,
         string _telefono, int _edad, const string& _preferencia, int _id, 
         int _tragos, double _cuenta);
     
+    // Método destructor
     virtual ~Cliente(){}
 
+    // Getters y Setters
     int getCliente();
     int getTragos();
     double getCuenta();
@@ -91,9 +117,12 @@ public:
     void setCuenta(double bill);
     void setPreferenciaTrago(string preference);
 
-    void registro_consumo(double precio_trago);
-    void mostrar_info();
-    void pagar_cuenta();
+    // suma el precio de la bebida a la cuenta total
+    void registro_consumo(double precio_trago); 
+    // sobreescribe el método de Persona para aplicar polimorfismo
+    void mostrar_info(); 
+    // Avisa al cliente cuánto debe, regresa cuenta y tragos en 0
+    void pagar_cuenta(); 
 };
 
 Cliente::Cliente(const string& _nombre, const string& _apellido, 
@@ -177,7 +206,10 @@ void Cliente::pagar_cuenta() {
     } while (opcion != 's' && opcion != 'S');
 }
 
-// 3. Empleado
+/**
+ * Empleado hereda de Persona. Le agrega atributos de trabajo como 
+ * su sueldo base, las horas que trabaja y su puesto en la licorería.
+ */
 class Empleado: public Persona {
 private:
     private:
@@ -186,13 +218,16 @@ private:
     string puesto;
 
 public:
+    // Método Constructor
     Empleado(const string& _nombre, const string& _apellido, 
     const string& _curp, string _direccion, const string& _nacionalidad, 
     int _tarjeta, string _telefono, int _edad, double _sueldo, int _horas_trabajo, 
     string _puesto);
 
+    // Método Destructor
     virtual ~Empleado(){}
 
+    // Getters y Setters
     double getSueldoBase();
     int getHoras();
     string getPuesto();
@@ -201,7 +236,9 @@ public:
     void setHorasTrabajo(int hours);
     void setPuesto(string position);
 
+    // Calcula el dinero total que se le va a pagar el empleado
     double calculo_nomina();
+    // Método que sobreescribe para mostrar información del empleado
     void mostrar_info();
 };
 
