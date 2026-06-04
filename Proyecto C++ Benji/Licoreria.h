@@ -22,25 +22,18 @@ public:
     Licoreria(string _nombre);
     virtual ~Licoreria();
 
-    string getNombre() {return nombre;}
+    string getNombre();
 
-    void agregar_bebida(Bebida* b) {inventario.push_back(b);}
-    void contratar_empleado(Empleado* e) {lista_empleados.push_back(e);}
-    void registrar_cliente(Cliente* c) {registro_clientes.push_back(c);}
+    void agregar_bebida(Bebida* b);
+    void contratar_empleado(Empleado* e);
+    void registrar_cliente(Cliente* c);
 
-    Bebida* getBebida(int i) {return inventario[i];}
-    Empleado* getEmpleado(int i) {return lista_empleados[i];}
-    Cliente* getClientes(int id) {
-        for(int i = 0; i < registro_clientes.size(); i++) {
-            if (registro_clientes[i]->getCliente() == id) {
-                return registro_clientes[i]; 
-            }
-        }
-        return nullptr;
-    }
-    int total_bebidas() {return inventario.size();}
-    int total_empleados() {return lista_empleados.size();}
-    int total_clientes() {return registro_clientes.size();}
+    Bebida* getBebida(int i);
+    Empleado* getEmpleado(int i);
+    Cliente* getClientes(int id);
+    int total_bebidas();
+    int total_empleados();
+    int total_clientes();
 
     // inventario
     void vender_trago(int index, Cliente* c);
@@ -72,7 +65,28 @@ public:
 
 };
 
+//Licoreria
 Licoreria::Licoreria(string _nombre) {nombre = _nombre;}
+string Licoreria::getNombre() {return nombre;}
+
+void Licoreria::agregar_bebida(Bebida* b) {inventario.push_back(b);}
+void Licoreria::contratar_empleado(Empleado* e) {lista_empleados.push_back(e);}
+void Licoreria::registrar_cliente(Cliente* c) {registro_clientes.push_back(c);}
+
+Bebida* Licoreria::getBebida(int i) {return inventario[i];}
+Empleado* Licoreria::getEmpleado(int i) {return lista_empleados[i];}
+Cliente* Licoreria::getClientes(int id) {
+        for(int i = 0; i < registro_clientes.size(); i++) {
+            if (registro_clientes[i]->getCliente() == id) {
+                return registro_clientes[i]; 
+            }
+        }
+        return nullptr;
+    }
+
+int Licoreria::total_bebidas() {return inventario.size();}
+int Licoreria::total_empleados() {return lista_empleados.size();}
+int Licoreria::total_clientes() {return registro_clientes.size();}
 
 // Inventario
 Licoreria::~Licoreria() {
@@ -131,7 +145,7 @@ void Licoreria::ajustar_inventario(int index, int cantidad) {
             cout << "Se agregaron " << cantidad << " botellas de: "
                 << inventario[index]->getNombre() << endl;
         }else if (cantidad < 0) {
-            inventario[index]->restarStock((cantidad));
+            inventario[index]->restarStock(cantidad);
             cout << "Se quitaron " << cantidad << " botellas de: "
                 << inventario[index]->getNombre() << endl;
             }

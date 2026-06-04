@@ -20,14 +20,14 @@ public:
 
     virtual ~Bebida(){}
 
-    int getStock() {return stock;}
-    float getGrados() {return porcentaje;}
-    float getPrecio() {return precio;}
-    float getDescuento() {return descuento;}
-    string getNombre() {return nombre;}
-    string getMarca() {return marca;}
-    string getPais() {return pais;}
-    string getTipoBebida() {return tipo_bebida;}
+    int getStock();
+    float getGrados();
+    float getPrecio();
+    float getDescuento();
+    string getNombre();
+    string getMarca();
+    string getPais();
+    string getTipoBebida();
 
     void sumarStock(int cantidad);
     void restarStock(int loot);
@@ -45,13 +45,18 @@ Bebida::Bebida(string _tipo_bebida, int _stock, float _porc, float _precio,
         porcentaje(_porc), precio(_precio), descuento(_desc), marca(_marca), 
         pais(_pais), nombre(_nombre) {}
 
-void Bebida::sumarStock(int cantidad) {
-    stock += cantidad;
-}
+int Bebida::getStock() {return stock;}
+float Bebida::getGrados() {return porcentaje;}
+float Bebida::getPrecio() {return precio;}
+float Bebida::getDescuento() {return descuento;}
+string Bebida::getNombre() {return nombre;}
+string Bebida::getMarca() {return marca;}
+string Bebida::getPais() {return pais;}
+string Bebida::getTipoBebida() {return tipo_bebida;}
 
-void Bebida::restarStock(int cantidad) {
-    stock -= abs(cantidad);
-}
+void Bebida::sumarStock(int cantidad) {stock += cantidad;}
+
+void Bebida::restarStock(int cantidad) {stock -= abs(cantidad);}
 
 float Bebida::descontar(float total) {
     float descontado =precio - (precio * descuento);
@@ -90,8 +95,8 @@ public:
         const string& _nombre, const string& _tipo, float _ibu);
     virtual ~Cerveza(){}
     
-    string getTipo(){return tipo;}
-    float getIbu(){return ibu;}
+    string getTipo();
+    float getIbu();
 
     void servir();
     string toString();
@@ -107,6 +112,9 @@ Cerveza::Cerveza(string _tipo_bebida, int _stock, float _porcentaje,
             tipo = _tipo;
             ibu = _ibu;
         }
+
+string Cerveza::getTipo() {return tipo;}
+float Cerveza::getIbu() {return ibu;}
 
 void Cerveza::servir() {
     cout << "Sirviendo una " << nombre << " tipo " << tipo << "." << endl;
@@ -149,8 +157,8 @@ public:
         const string& _nombre, const string& _tipo_agave, bool _gusano);
     virtual ~Mezcal(){}
 
-    string getTipoAgave(){return tipo_agave;}
-    bool getGusano(){return gusano;}
+    string getTipoAgave();
+    bool getGusano();
 
     void servir();
     string toString();
@@ -167,6 +175,9 @@ Mezcal::Mezcal(string _tipo_bebida, int _stock, float _porcentaje,
         tipo_agave = _agave;
         gusano = _gusano;
     }
+
+string Mezcal::getTipoAgave() {return tipo_agave;}
+bool Mezcal::getGusano() {return gusano;}
 
 void Mezcal::servir() {
     cout << "Aqui tienes un " << nombre << " de agave " << tipo_agave 
@@ -219,8 +230,8 @@ public:
 
     virtual ~Ron(){}
 
-    string getEstilo(){return estilo;}
-    bool getEspecias(){return especias;}
+    string getEstilo();
+    bool getEspecias();
 
     void servir();
     string toString();
@@ -236,6 +247,9 @@ Ron::Ron(string _tipo_bebida, int _stock, float _porcentaje, float _precio,
             estilo = _estilo;
             especias = _especias;
         }
+
+string Ron::getEstilo() {return estilo;}
+bool Ron::getEspecias() {return especias;}
 
 void Ron::servir() {
         cout << "Aquí tienes un buen " << nombre << " " << estilo << endl;
@@ -291,9 +305,9 @@ public:
         bool _agave);
     virtual ~Tequila(){}
     
-    string getRegion(){return region;}
-    string getCategoria(){return categoria;}
-    bool isAgave(){return agave;}
+    string getRegion();
+    string getCategoria();
+    bool isAgave();
 
     void servir();
     string toString(); 
@@ -311,6 +325,10 @@ Tequila::Tequila(string _tipo_bebida, int _stock, float _porcentaje,
             categoria = _categoria;
             agave = _agave; 
         }
+
+string Tequila::getRegion() {return region;}
+string Tequila::getCategoria() {return categoria;}
+bool Tequila::isAgave() {return agave;}
 
 void Tequila::servir() {
     cout << "Estas tomando tequila " << categoria <<  " de " << region << endl;
@@ -364,8 +382,8 @@ public:
         const string& _nombre, const string& _uva, int _year_cosecha);
     virtual ~Vino(){}
     
-    string getUva(){return uva;}
-    int getYearCosecha(){return year_cosecha;}
+    string getUva();
+    int getYearCosecha();
 
     void servir();
     string toString();
@@ -380,6 +398,9 @@ Vino::Vino(string _tipo_bebida, int _stock, float _porcentaje, float _precio,
                 uva = _uva;
                 year_cosecha = _year_cosecha;
             }
+
+string Vino::getUva() {return uva;}
+int Vino::getYearCosecha() {return year_cosecha;}
 
 void Vino::servir() {
     cout << "Una copa del vino " << nombre << ", cosecha " << year_cosecha 
@@ -414,8 +435,8 @@ public:
         const string& _nombre, const string& _sabor, int _destilaciones);
     virtual ~Vodka(){}
 
-    string getSabor(){return sabor;}
-    int getDestilaciones(){return destilaciones;}
+    string getSabor();
+    int getDestilaciones();
 
     void servir();
     string toString();
@@ -431,6 +452,9 @@ Vodka::Vodka(string _tipo_bebida, int _stock, float _porcentaje, float _precio,
                 sabor = _sabor;
                 destilaciones = _destilaciones;
             }
+
+string Vodka::getSabor() {return sabor;}
+int Vodka::getDestilaciones() {return destilaciones;}
 
 void Vodka::servir() {cout << "Ten un vodka de " << sabor << endl;}
 
@@ -474,9 +498,9 @@ public:
         const string& _nombre, int _years_aged, const string& _barrica);
     virtual ~Whiskey(){}
     
-    int getYearsAged() {return years_aged;}
-    string getBarrica() {return barrica;}
-
+    int getYearsAged();
+    string getBarrica();
+    
     void servir();
     string toString();
     float descontar(int cantidad);
@@ -491,6 +515,9 @@ Whiskey::Whiskey(string _tipo_bebida, int _stock, float _porcentaje,
                 years_aged = _years_aged;
                 barrica = _barrica;
             }
+
+int Whiskey::getYearsAged() {return years_aged;}
+string Whiskey::getBarrica() {return barrica;}
 
 void Whiskey::servir() {
     cout << "Ten un whiskey de " << years_aged 

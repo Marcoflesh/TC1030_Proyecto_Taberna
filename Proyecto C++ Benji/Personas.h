@@ -16,19 +16,18 @@ public:
         int _no_tarjeta, string _telefono, int _edad);
     virtual ~Persona(){}
 
-    string getNombre() {return nombre;}
-    string getApellido() {return apellido;}
-    string getCurp() {return curp;}
-    string getDireccion() {return direccion;}
-    string getNacionalidad() {return nacionalidad;}
-    int getTarjeta() {return no_tarjeta;}
-    string getTelefono() {return telefono;}
-    int getEdad() {return edad;}
-
-    void setDireccion(string direction) {direccion = direction;}
-    void setTarjeta(int card) {no_tarjeta = card;}
-    void setTelefono(string phone) {telefono = phone;}
-    void setEdad(int age) { edad = age;}
+    string getNombre();
+    string getApellido();
+    string getCurp();
+    string getDireccion();
+    string getNacionalidad();
+    int getTarjeta();
+    string getTelefono();
+    int getEdad();
+    void setDireccion(string direction);
+    void setTarjeta(int card);
+    void setTelefono(string phone);
+    void setEdad(int age);
 
     virtual void mostrar_info();
 };
@@ -39,6 +38,20 @@ Persona::Persona(const string& _nombre, const string& _apellido,
         apellido(_apellido), curp(_curp), direccion(_direccion),
         nacionalidad(_nacionalidad), no_tarjeta(_no_tarjeta), 
         telefono(_telefono), edad(_edad) {}
+
+string Persona::getNombre() {return nombre;}
+string Persona::getApellido() {return apellido;}
+string Persona::getCurp() {return curp;}
+string Persona::getDireccion() {return direccion;}
+string Persona::getNacionalidad() {return nacionalidad;}
+int Persona::getTarjeta() {return no_tarjeta;}
+string Persona::getTelefono() {return telefono;}
+int Persona::getEdad() {return edad;}
+
+void Persona::setDireccion(string direction) {direccion = direction;}
+void Persona::setTarjeta(int card) {no_tarjeta = card;}
+void Persona::setTelefono(string phone) {telefono = phone;}
+void Persona::setEdad(int age) {edad = age;}
 
 void Persona::mostrar_info() {
     cout << "Nombre: " << nombre << " " << apellido << endl;
@@ -70,15 +83,13 @@ public:
     
     virtual ~Cliente(){}
 
-    int getCliente(){return id;}
-    int getTragos(){return tragos;}
-    double getCuenta(){return cuenta;}
-    string getPreferenciaTrago(){return preferencia_trago;}
-
-    void setTragos(int drinks) {tragos = drinks;}
-    void setCuenta(double bill) {cuenta = bill;}
-    void setPreferenciaTrago(string beverage_preference) {preferencia_trago = 
-        beverage_preference;}
+    int getCliente();
+    int getTragos();
+    double getCuenta();
+    string getPreferenciaTrago();
+    void setTragos(int drinks);
+    void setCuenta(double bill);
+    void setPreferenciaTrago(string preference);
 
     void registro_consumo(double precio_trago);
     void mostrar_info();
@@ -107,6 +118,16 @@ Cliente::Cliente(const string& _nombre, const string& _apellido,
     cuenta = _cuenta;
 }
 
+int Cliente::getCliente() {return id;}
+int Cliente::getTragos() {return tragos;}
+double Cliente::getCuenta() {return cuenta;}
+string Cliente::getPreferenciaTrago() {return preferencia_trago;}
+
+void Cliente::setCuenta(double bill) {cuenta = bill;}
+void Cliente::setTragos(int drinks) {tragos = drinks;}
+void Cliente::setPreferenciaTrago(string preference) {preferencia_trago 
+    = preference;}
+
 void Cliente::registro_consumo(double precio_trago) {
     if (edad < 18){
         cout << "Prohibido la venta a menores" << endl;
@@ -127,7 +148,7 @@ void Cliente::mostrar_info() {
     cout << "Id " << id << endl;
     cout << "Preferencia de Bebida: " << preferencia_trago << endl;
     cout << "Tragos tomados: " << tragos << endl;
-    cout << "Cuenta: " << cuenta << endl;
+    cout << "Cuenta: $" << cuenta << endl;
 }
 
 void Cliente::pagar_cuenta() {
@@ -172,13 +193,13 @@ public:
 
     virtual ~Empleado(){}
 
-    double getSueldoBase() {return sueldo_base;}
-    int getHoras() {return horas_trabajo;}
-    string getPuesto() {return puesto;}
+    double getSueldoBase();
+    int getHoras();
+    string getPuesto();
 
-    void setSueldoBase(double salary) {sueldo_base = salary;}
-    void setHorasTrabajo(int hours) {horas_trabajo = hours;}
-    void setPuesto(string position) {puesto = position;}
+    void setSueldoBase(double salary);
+    void setHorasTrabajo(int hours);
+    void setPuesto(string position);
 
     double calculo_nomina();
     void mostrar_info();
@@ -193,6 +214,14 @@ Empleado::Empleado(const string& _nombre, const string& _apellido,
     horas_trabajo      = _horas_trabajo;
     puesto             = _puesto;
 }
+
+double Empleado::getSueldoBase() {return sueldo_base;}
+int Empleado::getHoras() {return horas_trabajo;}
+string Empleado::getPuesto() {return puesto;}
+
+void Empleado::setSueldoBase(double salary) {sueldo_base = salary;}
+void Empleado::setHorasTrabajo(int hours) {horas_trabajo = hours;}
+void Empleado::setPuesto(string position) {puesto = position;}
 
 double Empleado::calculo_nomina() {return sueldo_base * horas_trabajo;}
 
