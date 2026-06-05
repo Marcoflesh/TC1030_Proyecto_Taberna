@@ -1,5 +1,5 @@
 /*
- * Proyecto Licorería - Clase Persona, Cliente y Empleado
+ * Proyecto Licorería Clase Persona, Cliente y Empleado
  * Marco Antonio Hernández Roque
  * A01709802
  * 12/06/2026
@@ -8,6 +8,7 @@
  * Sirve para guardar los datos básicos de cualquier persona involucrada en el 
  * negocio y manejar cosas específicas como las cuentas de consumo o las nóminas.
  */
+
 #ifndef PERSONAS_H
 #define PERSONAS_H
 
@@ -20,7 +21,7 @@
  */
 class Persona {
     // atributos
-protected:
+protected: // Declaro protegido para que se pueda acceder en las hijas
     string nombre, apellido, curp, direccion, nacionalidad, telefono;
     int no_tarjeta, edad;
 

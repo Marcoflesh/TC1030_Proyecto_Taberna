@@ -1,5 +1,5 @@
 /*
- * Proyecto Licorería - Clase Licoreria (El Administrador de Todo)
+ * Proyecto Licorería Clase Licoreria
  * Marco Antonio Hernández Roque
  * A01709802
  * 12/06/2026
@@ -8,14 +8,15 @@
  * todas las bebidas del inventario, los empleados contratados y los clientes. 
  * También tiene las funciones para leer y escribir los archivos de texto.
  */
+
 #ifndef LICORERIA_H
 #define LICORERIA_H
 
 #include <iostream>
-#include <vector> // sirve para guardar objetos en arreglos
+#include <vector> // para guardar objetos en arreglos
 #include <string>
-#include <fstream> // Sirve para poder cargar los archivos
-#include <sstream> // Sirve para poder guardar los archivos
+#include <fstream> // para poder cargar los archivos
+#include <sstream> // para poder guardar los archivos
 
 // Importa las clases
 #include "Bebidas.h"
@@ -66,7 +67,8 @@ public:
     void ajustar_inventario(int index, int cantidad); 
     void eliminar_bebida(int index); // Elimina por completo bebida del inventario
     
-    // Empleados
+    // Métodos para el manejo de Empleados
+
     void mostrar_empleado(); // Muestra lista de empleados
     void mostrar_info_empleado(int index); // Muestra info completa de 1 empelado
     void contratar(); // Agrega empleados nuevos
@@ -76,7 +78,8 @@ public:
     */
     void editar_empleado(int index); 
 
-    // Clientes
+    // Métodos para el manejo de Clientes
+
     void mostrar_cliente(); // Muestra la lista de Clientes
     /*
         Muestra la información de un cliente en específico mediante el 
@@ -90,7 +93,8 @@ public:
     */
     void editar_cliente(int id); 
 
-    //archivos
+    // Métodos para el manejo de los archivos
+
     void cargar_bebidas(); // Carga la lista de bebidas de los archivos .txt
     void cargar_clientes(); // Carga la lista de clientes de los archivos .txt
     void cargar_empleados(); // Carga la lista de empleados de los archivos .txt

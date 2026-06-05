@@ -1,3 +1,14 @@
+/*
+ * Proyecto Licorería Clase Bebida y sus variedades
+ * Marco Antonio Hernández Roque
+ * A01709802
+ * 12/06/2026
+ * Materia: TC1030 Programación Orientada a Objetos
+ * * Este archivo define la clase abstracta Bebida y todos los tipos de alcohol 
+ * que se vende en el local. Aquí se controla el inventario, los precios 
+ *  base y cómo cambian los descuentos dependiendo de cada bebida.
+ */
+
 #ifndef BEBIDAS_H
 #define BEBIDAS_H
 
@@ -500,7 +511,7 @@ public:
     
     int getYearsAged();
     string getBarrica();
-    
+
     void servir();
     string toString();
     float descontar(int cantidad);

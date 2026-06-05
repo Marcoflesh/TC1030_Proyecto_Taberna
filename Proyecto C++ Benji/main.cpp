@@ -1,4 +1,15 @@
-#include <iostream> // Salida de datos
+/*
+ * Proyecto Licorería Main
+ * Marco Antonio Hernández Roque
+ * A01709802
+ * 12/06/2026
+ * Materia: TC1030 Programación Orientada a Objetos
+ * * Este es el archivo principal que ejecuta todo el proyecto. Se encarga de arrancar 
+ * la "Taberna de Moe", cargar los datos guardados y mostrar los menús en consola 
+ * para que un empleado o un cliente puedan interactuar con el sistema.
+ */
+
+#include <iostream> // Para imprimir
 #include <string> // Permite generar y usar strings
 #include <ctime> // Se usa para generar números aleatorios siempre
 #include <Windows.h> // Se usa para que la terminal pueda mostrar acentos
