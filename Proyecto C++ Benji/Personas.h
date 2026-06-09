@@ -4,7 +4,8 @@
  * A01709802
  * 12/06/2026
  * Materia: TC1030 Programación Orientada a Objetos
- * * En este archivo se creó la clase base Persona y sus dos hijas: Cliente y Empleado. 
+ * En este archivo se define la clase base Persona y sus dos hijas: 
+ * Cliente y Empleado. 
  * Sirve para guardar los datos básicos de cualquier persona involucrada en el 
  * negocio y manejar cosas específicas como las cuentas de consumo o las nóminas.
  */
@@ -17,7 +18,9 @@
 
 /**
  * Persona es la clase padre. Guarda los datos que todos comparten (nombre, 
- * edad, teléfono, dirección, etc.) para no tener que repetir código después.
+ * edad, teléfono, dirección, etc.) Sus métodos de acceso se declaran
+ * como virtuales donde corresponde para permitir el polimorfismo en 
+ * Cliente y Empleado
  */
 class Persona {
     // atributos
@@ -49,7 +52,7 @@ public:
     void setTelefono(string phone);
     void setEdad(int age);
 
-    virtual void mostrar_info(); // imprime en la pantalla datos personales
+    virtual void mostrar_info();
 };
 
 Persona::Persona(const string& _nombre, const string& _apellido, 
@@ -73,6 +76,16 @@ void Persona::setTarjeta(int card) {no_tarjeta = card;}
 void Persona::setTelefono(string phone) {telefono = phone;}
 void Persona::setEdad(int age) {edad = age;}
 
+/**
+ * mostrar_info imprime los datos personales de la Persona en consola.
+ * 
+ * Recorre cada atributo de la clase e imprime su valor con etiqueta.
+ * Las clases hijas pueden sobreescribir este método para añadir sus
+ * propios campos sin perder los datos comunes.
+ * 
+ * @param
+ * @return
+ */
 void Persona::mostrar_info() {
     cout << "Nombre: " << nombre << " " << apellido << endl;
     cout << "Curp: " << curp << endl;
@@ -84,8 +97,9 @@ void Persona::mostrar_info() {
 }
 
 /**
- * Cliente hereda de Persona. Además de sus datos personales, le añade un ID, 
- * cuántos tragos lleva y una cuenta de dinero para saber cuánto debe pagar.
+ * Cliente hereda de Persona. Además de sus datos personales, le añade un ID
+ * único generado al momento de creación, cuántos tragos lleva y una 
+ * cuenta de dinero para saber cuánto debe pagar al final.
  */
 class Cliente: public Persona {
 private:
@@ -118,11 +132,8 @@ public:
     void setCuenta(double bill);
     void setPreferenciaTrago(string preference);
 
-    // suma el precio de la bebida a la cuenta total
     void registro_consumo(double precio_trago, int cantidad); 
-    // sobreescribe el método de Persona para aplicar polimorfismo
     void mostrar_info(); 
-    // Avisa al cliente cuánto debe, regresa cuenta y tragos en 0
     void pagar_cuenta(); 
 };
 
@@ -158,6 +169,17 @@ void Cliente::setTragos(int drinks) {tragos = drinks;}
 void Cliente::setPreferenciaTrago(string preference) {preferencia_trago 
     = preference;}
 
+/**
+ * registro_consumo acumula el precio de una bebida en la cuenta del
+ * cliente.
+ * 
+ * Verifica primero que el cliente sea mayor de edad. Si lo es,
+ * suma la cantidad de tragos al contador y el precio a la cuenta total,
+ * luego imprime un resumen del consumo actual en pantalla.
+ * 
+ * @param double precio_trago, int cantidad
+ * @return
+ */
 void Cliente::registro_consumo(double precio_trago, int cantidad) {
     if (edad < 18){
         cout << "Prohibido la venta a menores" << endl;
@@ -172,6 +194,16 @@ void Cliente::registro_consumo(double precio_trago, int cantidad) {
     }
 }
 
+/**
+ * mostrar_info imprime los datos completos del cliente en consola.
+ * 
+ * Reutiliza el mostrar_info de Persona para los datos personales y añade
+ * los atributos de ID, preferencia de bebida, tragos consumidos y el saldo
+ * acumulado en su cuenta.
+ * 
+ * @param
+ * @return
+ */
 void Cliente::mostrar_info() {
     cout << "Detalles del cliente" << endl;
     Persona::mostrar_info();
@@ -181,6 +213,17 @@ void Cliente::mostrar_info() {
     cout << "Cuenta: $" << cuenta << endl;
 }
 
+/**
+ * pagar_cuenta muestra el resumen de consumo y procesa el pago del cliente.
+ * 
+ * Verifica si el cliente tiene deuda. Si la tiene, muestra el desglose
+ * con IVA del 16% y solicita confirmación de pago. Al confirmar, reinicia
+ * el contador de tragos y la cuenta a cero. El clico se repite hasta que
+ * el cliente confirme con 's' o 'S'.
+ * 
+ * @param
+ * @return
+ */
 void Cliente::pagar_cuenta() {
     if(tragos == 0 && cuenta <= 0.0){
         cout << nombre << ", No tienes deuda pendiente." << endl;
@@ -237,9 +280,7 @@ public:
     void setHorasTrabajo(int hours);
     void setPuesto(string position);
 
-    // Calcula el dinero total que se le va a pagar el empleado
     double calculo_nomina();
-    // Método que sobreescribe para mostrar información del empleado
     void mostrar_info();
 };
 
@@ -261,8 +302,28 @@ void Empleado::setSueldoBase(double salary) {sueldo_base = salary;}
 void Empleado::setHorasTrabajo(int hours) {horas_trabajo = hours;}
 void Empleado::setPuesto(string position) {puesto = position;}
 
+/**
+ * calculo_nomia calcula el pago total correspondiente al empleado.
+ * 
+ * Multiplica el sueldo base por hora por el total de horas trabajadas
+ * para obtener el monto a liquidar de la nómina.
+ * 
+ * @param
+ * @return double con el precio total a pagar al empleado en la jornada.
+ */
 double Empleado::calculo_nomina() {return sueldo_base * horas_trabajo;}
 
+/**
+ * mostrar_info imprime los datos de trabajo completos del empleado en
+ * consola.
+ * 
+ * Reutiliza el mostrar_info() de Persona para los datos personales y
+ * añade el puesto, sueldo base, horas trabajadas, y el cálculo de la
+ * nómina generado por calculo_nomina()
+ * 
+ * @param
+ * @return
+ */
 void Empleado::mostrar_info() {
     Persona::mostrar_info();
     cout << "Puesto: " << puesto << endl;

@@ -4,21 +4,23 @@
  * A01709802
  * 12/06/2026
  * Materia: TC1030 Programación Orientada a Objetos
- * * Este es el archivo principal que ejecuta todo el proyecto. Se encarga de arrancar 
- * la "Taberna de Moe", cargar los datos guardados y mostrar los menús en consola 
- * para que un empleado o un cliente puedan interactuar con el sistema.
+ * * Este es el archivo principal que ejecuta todo el proyecto. 
+ * Se encarga de arrancar la "Taberna de Moe", cargar los datos 
+ * guardados y mostrar los menús en consola para que un empleado o un 
+ * cliente puedan interactuar con el sistema.
  */
 
 #include <iostream> // Para imprimir
 #include <string> // Permite generar y usar strings
-#include <ctime> // Se usa para generar números aleatorios siempre
+#include <ctime> // Ayuda a generar números aleatorios siempre distintos
 #include <Windows.h> // Se usa para que la terminal pueda mostrar acentos
+
 // Importa la clase de Licoreria
 #include "Licoreria.h"
 
 using namespace std;
 
-// Función que inicia sesión a los administradores
+// Función que autentifica a los administradores antes de nentrar al menú
 bool login();
 
 int main() {
@@ -26,10 +28,8 @@ int main() {
     // Función que ayuda a generar ID random de clientes siempre
     srand(time(NULL)); 
 
-    /*
-    funciones de Windows.h para poder mostrar los acentos al ejecutar 
-    el código
-    */
+    
+    // Funciones de Windows.h para poder mostrar los acentos al ejecutar 
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
     setlocale(LC_NUMERIC, "C");
@@ -395,6 +395,16 @@ int main() {
     return 0;
 }
 
+/**
+ * login autentifica al administrador antes de dar acceso al menú de gestión.
+ * 
+ * solicita usuario y contraseña hasta 3 veces. Si las credenciales son
+ * correctas devuelve true y permie el acceso. Si se agotan los intentos
+ * devuelve false y bloquea la entrada al menú de administrador.
+ * 
+ * @param
+ * @return bool true si las credenciales son correctas, false si no lo son
+ */
 bool login() {
     string user, password;
     for (int i = 1; i <= 3; i++) {

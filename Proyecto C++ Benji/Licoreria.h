@@ -4,7 +4,7 @@
  * A01709802
  * 12/06/2026
  * Materia: TC1030 Programación Orientada a Objetos
- * * Esta clase funciona como el cerebro del sistema. Guarda en vectores 
+ * Esta clase funciona como el cerebro del sistema. Guarda en vectores 
  * todas las bebidas del inventario, los empleados contratados y los clientes. 
  * También tiene las funciones para leer y escribir los archivos de texto.
  */
@@ -26,7 +26,7 @@ using namespace std;
 
 class Licoreria {
 private:
-    // Se crean arreglos mediante vectores para guardar objetos
+    // Se usan vectores de apuntadores para guardar objetos
     string nombre;
     vector <Bebida*> inventario;
     vector <Empleado*> lista_empleados;
@@ -34,11 +34,11 @@ private:
 
 public:
     Licoreria(string _nombre); // Muestra el nombre de la Licoreia
-    virtual ~Licoreria(); // Método Destructor
+    virtual ~Licoreria(); // Libera la memoria de todos los vectores
 
     string getNombre();
 
-    // Métodos para agregar nuevos objetos
+    // Métodos para agregar nuevos objetos a los vectores correspondientes
     void agregar_bebida(Bebida* b);
     void contratar_empleado(Empleado* e);
     void registrar_cliente(Cliente* c);
@@ -50,70 +50,35 @@ public:
 
     // Métodos para el manejo del inventario
 
-    /*
-        Registra la selección de bebida del Cliente, resta la bebida 
-        del stock y se lo suma a la cuenta del Cliente 
-     */
     void vender_trago(int index, Cliente* c);
-    void mostrar_inventario(); // Muestra el inventario de bebidas
-    /*
-        Método que muestra la información completa de una bebida en 
-        específico seleccionada por el cliente
-    */
+    void mostrar_inventario();
     void mostrar_info_bebida(int index);
-    /*
-        Agrega o quita x cantida de bebidas al inventario
-    */
     void ajustar_inventario(int index, int cantidad); 
-    void eliminar_bebida(int index); // Elimina por completo bebida del inventario
+    void eliminar_bebida(int index); 
     
     // Métodos para el manejo de Empleados
 
-    void mostrar_empleado(); // Muestra lista de empleados
-    void mostrar_info_empleado(int index); // Muestra info completa de 1 empelado
-    void contratar(); // Agrega empleados nuevos
-    /*
-        Edita un atributo de un empleado en específico, como (telefono,
-        dirección, edad, puesto, tarjeta, horas de trabajo y sueldo)
-    */
+    void mostrar_empleado(); 
+    void mostrar_info_empleado(int index); 
+    void contratar(); 
     void editar_empleado(int index); 
 
     // Métodos para el manejo de Clientes
 
-    void mostrar_cliente(); // Muestra la lista de Clientes
-    /*
-        Muestra la información de un cliente en específico mediante el 
-        ingreso de su ID personal que se crea con su constructor
-    */
+    void mostrar_cliente(); 
     void mostrar_info_cliente(int id);
-    void registrar_new_cliente(); // Registra un nuevo cliente al sistema
-    /*
-        Edita un atributo de un cliente en específico, como (telefono,
-        dirección, edad, tarjeta y preferencia de bebida)
-    */
+    void registrar_new_cliente(); 
     void editar_cliente(int id); 
 
     // Métodos para el manejo de los archivos
 
-    void cargar_bebidas(); // Carga la lista de bebidas de los archivos .txt
-    void cargar_clientes(); // Carga la lista de clientes de los archivos .txt
-    void cargar_empleados(); // Carga la lista de empleados de los archivos .txt
-
-    /*
-        Se crean archivos temporales donde se guardan todos los cambios 
-        al inventario, clientes y empleados; realizados por el usuario 
-        dentro del programa y cambia su nombre al archivo original 
-        sobreescribiendo su información y guardando los cambios
-    */
+    void cargar_bebidas(); 
+    void cargar_clientes();
+    void cargar_empleados(); 
     void guardar_bebidas(); 
     void guardar_clientes(); 
     void guardar_empleados();
-    /*
-        Método que guarda los 3 métodos de guardado en una sola función
-        para ser usada en main
-    */
     void guardar_todo();
-
 };
 
 //Licoreria
@@ -126,6 +91,18 @@ void Licoreria::registrar_cliente(Cliente* c) {registro_clientes.push_back(c);}
 
 Bebida* Licoreria::getBebida(int i) {return inventario[i];}
 Empleado* Licoreria::getEmpleado(int i) {return lista_empleados[i];}
+
+/**
+ * getClientes busca y devuelve un cliente por su ID único.
+ * 
+ * Recorre el vector de clientes comparando el id de cada uno con el
+ * parámetro ingresado. Si lo encuentra devuelve el apuntador, si no lo
+ * enuentra devuelve 'nullptr'
+ * 
+ * @param int id único del cliente a buscar
+ * @return Cliente* apuntador al cliente encontrado, o nullptr si no
+ * existe
+ */
 Cliente* Licoreria::getClientes(int id) {
         for(int i = 0; i < registro_clientes.size(); i++) {
             if (registro_clientes[i]->getCliente() == id) {
@@ -137,6 +114,17 @@ Cliente* Licoreria::getClientes(int id) {
 
 
 // Inventario
+
+/**
+ * ~Licoreria destructor libera la memoria de todos los objetos guardados
+ * en los vectores al terminar el programa.
+ * 
+ * Recorre cada vector y aplica delete a cada apuntador para evitar fugas
+ * de memoria
+ * 
+ * @param
+ * @return
+ */
 Licoreria::~Licoreria() {
     for (int i = 0; i < inventario.size(); i++) 
         delete inventario[i];
@@ -146,6 +134,16 @@ Licoreria::~Licoreria() {
         delete registro_clientes[i];
 }
 
+/**
+ * vender_trago registra la venta de una bebida a un cliente
+ * 
+ * verifica que el índice sea válido y que haya stock suficiente, solicita
+ * la cantidad deesada, aplica el descuento correspondiente, resta las
+ * unidades del inventario y registra el consumo en la cuenta del cliente.
+ * 
+ * @param int index de la bebida, Cliente* c.
+ * @return 
+ */
 void Licoreria::vender_trago(int index, Cliente* c) {
     if (index >= 0 && index < inventario.size()) {
         if (inventario[index]->getStock() > 0) {
@@ -175,6 +173,16 @@ void Licoreria::vender_trago(int index, Cliente* c) {
     }
 }
 
+/**
+ * mostrar_inventario imprime en pantalla la lista de bebidas disponibles
+ * 
+ * Verifica que el inventario no esté vacío antes de recorrerlo. Muestra
+ * el índice, nombre, marca y stock actual de cada bebida para que el
+ * usuario pueda seleccionar por número.
+ * 
+ * @param
+ * @return
+ */
 void Licoreria::mostrar_inventario() {
     cout << "Inventario" << endl;
     cout << "\n";
@@ -190,6 +198,15 @@ void Licoreria::mostrar_inventario() {
     }
 }
 
+/**
+ * mostrar_info_bebida imprime la información completa de una bebida.
+ * 
+ * valida que el índice sea válido y llama al toString() de la bebida
+ * correspondiente para mostrar todos sus atributos en pantalla.
+ * 
+ * @param int index posición de la bebida en el vector inventario
+ * @return 
+ */
 void Licoreria::mostrar_info_bebida(int index) {
     if (index >= 0 && index < inventario.size()) {
         cout << inventario[index]->toString() << endl;
@@ -198,6 +215,17 @@ void Licoreria::mostrar_info_bebida(int index) {
     }
 }
 
+/**
+ * ajustar_inventario agrega o quita unidades de una bebida en el
+ * inventario.
+ * 
+ * valida que el índice sea válido. Si la cantidad es positiva llama a
+ * sumarStock(), si es negativa llama a restarStock(). Imprime el resultado
+ * de la operación en pantalla.
+ * 
+ * @param int index, int cantidad
+ * @return
+ */
 void Licoreria::ajustar_inventario(int index, int cantidad) {
     if(index >= 0 && index < inventario.size()) {
         if (cantidad > 0) {
@@ -214,6 +242,15 @@ void Licoreria::ajustar_inventario(int index, int cantidad) {
     }
 }
 
+/**
+ * eliminar_bebida elimina completamente una bebida del inventario.
+ * 
+ * valida que el índice sea válido, imprime el nombre de la bebida
+ * eliminada, libera su memoria con delete y la borra del vector.
+ * 
+ * @param int index de la beblida a eliminar en el vector inventario
+ * @return
+ */
 void Licoreria::eliminar_bebida(int index) {
     if (index >= 0 && index < inventario.size()) {
         cout << "\nBebida eliminada: " << inventario[index]->getNombre() 
@@ -226,6 +263,17 @@ void Licoreria::eliminar_bebida(int index) {
 }
 
 // Empleado
+
+/**
+ * mostrar_empleado imprime la lista de empleados contratados.
+ * 
+ * recorre el vector de empleados e imprime el índice, nombre completo y
+ * puesto de cada uno para que el usuario pueda seleccionar por valor de 
+ * [i].
+ * 
+ * @param
+ * @return
+ */
 void Licoreria::mostrar_empleado() {
     cout << "Empleados" << endl;
     for (int i = 0; i < lista_empleados.size(); i++) {
@@ -235,6 +283,15 @@ void Licoreria::mostrar_empleado() {
     }
 }
 
+/**
+ * mostrar_info_empleado imprime la información completa de un empleado.
+ * 
+ * valida que el índice sea válido y llama a mostrar_info() del empleado
+ * correspondiente para mostrar todos sus atributos en pantalla.
+ * 
+ * @param int index posición del empleado en el vector lista_empleados
+ * @return
+ */
 void Licoreria::mostrar_info_empleado(int index) {
     if (index >= 0 && index < lista_empleados.size()) {
         lista_empleados[index]->mostrar_info();
@@ -243,6 +300,16 @@ void Licoreria::mostrar_info_empleado(int index) {
     }
 }
 
+/**
+ * contratar solicita los datos de un empleado nuevo a través de la
+ * terminal y lo agrega al vector de empleados.
+ * 
+ * Pide todos los datos necesarios para construir un objeto Empleado y
+ * llama a contratar_empleado() para agregarlo al vector.
+ * 
+ * @param
+ * @return
+ */
 void Licoreria::contratar() {
     string nomb, ape, curp, direc, nacion, puesto, tel;
     int tarj, edad, horas;
@@ -278,6 +345,16 @@ void Licoreria::contratar() {
     cout << nomb << " " << ape << " contratado" << endl;
 }
 
+/**
+ * editar_empleado permite modificar un atributo de un empleado existente
+ * 
+ * muestra la información actual del empleado y despliega un menú con los
+ * campos editables. según la opción elegida solicita el nuevo valor y
+ * llama al setter correspondiente del objeto.
+ * 
+ * @param int index del empleado a editar en el vector lista_empleados
+ * @return
+ */
 void Licoreria::editar_empleado(int index) {
     Empleado *e = lista_empleados[index];
     e->mostrar_info();
@@ -350,6 +427,16 @@ void Licoreria::editar_empleado(int index) {
 }
 
 // Clientes
+
+/**
+ * mostrar_cliente imprime la lista de clientes registrados.
+ * 
+ * recorre el vector de clientes e imprime el índice, nombre completo e
+ * id único de cada uno para que el usuario pueda identificarlos.
+ * 
+ * @param
+ * @return
+ */
 void Licoreria::mostrar_cliente() {
     cout << "Lista Clientes" << endl;
     cout << "\n";
@@ -360,6 +447,14 @@ void Licoreria::mostrar_cliente() {
     }
 }
 
+/**
+ * mostrar_info_cliente imprime la información completa de un cliente.
+ * 
+ * usa getClientes() para buscar al cliente por su id. Si lo encuentra
+ * llama a su mostrar_info(), si no, imprime un mensaje de error.
+ * 
+ * @param int id único del cliente a mostrar
+ */
 void Licoreria::mostrar_info_cliente(int id) {
     Cliente* cliente = getClientes(id);
 
@@ -370,6 +465,16 @@ void Licoreria::mostrar_info_cliente(int id) {
     }
 }
 
+/**
+ * registrar_new_cliente solicita los datos de un cliente nuevo por
+ * terminal y lo agrega al vector de clientes.
+ * 
+ * pide todos los datos necesarios para construir un objeto Cliente y
+ * llama a registrar_cliente() para agregarlo al vector.
+ * 
+ * @param
+ * @return
+ */
 void Licoreria::registrar_new_cliente() {
     string nomb, ape, curp, direc, nacion, pref, tel;
     int    tarj, edad;
@@ -401,6 +506,16 @@ void Licoreria::registrar_new_cliente() {
     cout <<  nomb << " registrado." << endl;
 }
 
+/**
+ * editar_cliente permite modificar un atributo de un cliente existente.
+ * 
+ * busca al cliente por su id y muestra su información actual. Despliega
+ * un menú con los campos editables y según la opción elegida solicita
+ * el nuevo valor y llama al setter correspondiente del objeto.
+ * 
+ * @param int id único del cliente a editar
+ * @return
+ */
 void Licoreria::editar_cliente(int id) {
     Cliente* c = getClientes(id);
 
@@ -464,6 +579,17 @@ void Licoreria::editar_cliente(int id) {
 
 // Archivos
 
+/**
+ * cargar_bebidas lee el archivo Bebidas.txt y reconstruye todos los
+ * objetos del inventario en memoria.
+ * 
+ * abre el archivo línea por línea e identifica el tipo de bebida para
+ * crear el objeto correspondiente con sus atributos propios y agregarlo
+ * al vector inventario.
+ * 
+ * @param
+ * @return
+ */
 void Licoreria::cargar_bebidas() {
     ifstream archivo("Bebidas.txt");
     string line;
@@ -530,6 +656,17 @@ void Licoreria::cargar_bebidas() {
     archivo.close();
 }
 
+/**
+ * cargar_clientes lee el archivo Clientes.txt y reconstruye todos los
+ * objetos de clientes en memoria.
+ * 
+ * abre el archivo línea por línea y construye un objeto Cliente con el
+ * cosntructor de carga, que restaura el id, tragos y cuenta previamente
+ * guardados.
+ * 
+ * @param
+ * @return
+ */
 void Licoreria::cargar_clientes() {
     ifstream archivo("Clientes.txt");
     string line;
@@ -552,6 +689,16 @@ void Licoreria::cargar_clientes() {
     archivo.close();
 }
 
+/**
+ * cargar_empleados lee el archivo Empleados.txt y reconstruye todos los 
+ * objetos de empleados en memoria.
+ * 
+ * abre el archivo línea por línea y construye un objeto Empleado con
+ * todos sus atributos personales y laborales.
+ * 
+ * @param
+ * @return
+ */
 void Licoreria::cargar_empleados() {
     ifstream archivo("Empleados.txt");
     string line;
@@ -574,6 +721,16 @@ void Licoreria::cargar_empleados() {
     archivo.close();   
 }
 
+/**
+ * guardar_bebidas escribe el inventario actual en el archivo Bebidas.txt
+ * 
+ * crea un archivo temporal, serializa cada bebida del vector usando
+ * el método de toTexto() y lo escribe línea por línea. Al terminar
+ * elimina el archivo original y renombra el temporal para sobreescribirlo.
+ * 
+ * @param
+ * @return
+ */
 void Licoreria::guardar_bebidas() {
     ifstream entrada("Bebidas.txt");
     ofstream temporal("Bebidas_tmp.txt");
@@ -590,6 +747,17 @@ void Licoreria::guardar_bebidas() {
     rename("Bebidas_tmp.txt", "Bebidas.txt");
 }
 
+/**
+ * guarda_clientes escribe el registro acutal de clientes en el archivo
+ * Clientes.txt
+ * 
+ * crea un archivo temporal y serializa cada cliente del vector campo
+ * por campo separado por comas. Al terminar elimina el archivo orignal
+ * y renombra el temporal para sobreescribirlo.
+ * 
+ * @param
+ * @return
+ */
 void Licoreria::guardar_clientes() {
     ifstream entrada("Clientes.txt");
     ofstream temporal("Clientes_temp.txt");
@@ -612,6 +780,17 @@ void Licoreria::guardar_clientes() {
     rename("Clientes_temp.txt", "Clientes.txt");
 }
 
+/**
+ * guardar_empleados escribe la lista actual de empleados en el archivo
+ * Empleados.txt.
+ * 
+ * crea un archivo temporal y serializa cada empleado del vector campo
+ * por campo separado por comas. Al terminar elimina el archivo original
+ * y renombra el temporal para sobreescribirlo.
+ * 
+ * @param
+ * @return
+ */
 void Licoreria::guardar_empleados() {
     ifstream entrada("Empleados.txt");
     ofstream temporal("Empleados_temp.txt");
@@ -631,6 +810,17 @@ void Licoreria::guardar_empleados() {
 
 }
 
+/**
+ * guarda_todo agrupa los 3 métodos de guardado en una sola llamada en main.
+ * 
+ * ejecuta guardar_bebidas(), guardar_clientes y guardar_empleados() en
+ * secuencia y confirma en pantalla que los cambios se guardaron.
+ * 
+ * Se llama desde main al cerrar el programa.
+ * 
+ * @param
+ * @return
+ */
 void Licoreria::guardar_todo() {
     guardar_bebidas();
     guardar_clientes();
