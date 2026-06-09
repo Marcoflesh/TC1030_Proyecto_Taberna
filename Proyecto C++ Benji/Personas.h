@@ -119,7 +119,7 @@ public:
     void setPreferenciaTrago(string preference);
 
     // suma el precio de la bebida a la cuenta total
-    void registro_consumo(double precio_trago); 
+    void registro_consumo(double precio_trago, int cantidad); 
     // sobreescribe el método de Persona para aplicar polimorfismo
     void mostrar_info(); 
     // Avisa al cliente cuánto debe, regresa cuenta y tragos en 0
@@ -158,13 +158,13 @@ void Cliente::setTragos(int drinks) {tragos = drinks;}
 void Cliente::setPreferenciaTrago(string preference) {preferencia_trago 
     = preference;}
 
-void Cliente::registro_consumo(double precio_trago) {
+void Cliente::registro_consumo(double precio_trago, int cantidad) {
     if (edad < 18){
         cout << "Prohibido la venta a menores" << endl;
         return;
     }
     if (precio_trago > 0){
-        tragos++;
+        tragos += cantidad;
         cuenta += precio_trago;
         cout << nombre << " LLevas # " << tragos << endl;
         cout << "Precio Bebida: $" << precio_trago << endl;

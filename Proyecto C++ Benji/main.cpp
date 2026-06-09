@@ -120,7 +120,9 @@ int main() {
                             cin >> grados;
                             cout << "Precio: $";  
                             cin >> precio;
-                            cout << "Descuento (ej. 0.10 para 10%): "; 
+                            cout << "Descuento (ej. 0.10 para 10%), en caso de"
+                            << "ser vino, ponga 0.0 o se aplicará ese valor en"
+                            << "automatico: "; 
                             cin >> descuento;
 
                             switch (tipo) {
@@ -190,6 +192,7 @@ int main() {
                                     cin >> uva;
                                     cout << "Año de cosecha: ";
                                     cin >> year;
+                                    descuento = 0.0;
                                     bar.agregar_bebida(new Vino("Vino", stock, 
                                         grados, precio, descuento, marca, pais, 
                                         nombre, uva, year));

@@ -149,10 +149,22 @@ Licoreria::~Licoreria() {
 void Licoreria::vender_trago(int index, Cliente* c) {
     if (index >= 0 && index < inventario.size()) {
         if (inventario[index]->getStock() > 0) {
+            int cantidad;
+            cout << "¿Cuántas unidades quieres?: ";
+            cin >> cantidad;
+
+            if (cantidad <= 0) {
+                cout << "cantidad invalida" << endl;
+                return;
+            }
+            if (cantidad > inventario[index]->getStock()) {
+                cout << "No hay suficientes bebidas en stock" << endl;
+                return;
+            }
             inventario[index]->servir();
-            float precio = inventario[index]->getPrecio();
-            inventario[index]->restarStock(1);
-            c->registro_consumo(precio);
+            float precio = inventario[index]->descontar(cantidad);
+            inventario[index]->restarStock(cantidad);
+            c->registro_consumo(precio, cantidad);
             cout << "Consumiste " << inventario[index]->getNombre() << endl;
             } else {
             cout << "Una disculpa, ya no queda " 
