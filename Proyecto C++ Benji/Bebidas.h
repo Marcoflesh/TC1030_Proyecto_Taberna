@@ -17,7 +17,10 @@
 
 using namespace std;
 
-// 1. Clase Abstracta
+/**
+ * Bebida es la clase abstracta base para todas las bebidas del inventario.
+ * Guarda los datos que todas comparten como nombre, marca, precio, etc.
+ */
 class Bebida {
 protected:
     int stock;
@@ -25,12 +28,14 @@ protected:
     string nombre, marca, pais, tipo_bebida;
 
 public:
+    // Constructor
     Bebida(string _tipo_bebida, int _stock, float _porcentaje, float _precio, 
         float _descuento, const string& _marca, const string& _pais, 
         const string& _nombre);
 
     virtual ~Bebida(){}
 
+    // Getters
     int getStock();
     float getGrados();
     float getPrecio();
@@ -40,11 +45,14 @@ public:
     string getPais();
     string getTipoBebida();
 
+    // Suman o restan bebidas del inventario
     void sumarStock(int cantidad);
     void restarStock(int loot);
 
+    // Aplica el descuento dando un total o una cantidad de bebidas
     virtual float descontar(float total); 
     virtual float descontar(int cantidad);
+
     virtual void servir() = 0; 
     virtual string toString();
     virtual string toTexto() = 0;
@@ -70,7 +78,7 @@ void Bebida::sumarStock(int cantidad) {stock += cantidad;}
 void Bebida::restarStock(int cantidad) {stock -= abs(cantidad);}
 
 float Bebida::descontar(float total) {
-    float descontado =precio - (precio * descuento);
+    float descontado = total - (total * descuento);
     cout << "Se aplico un descuento a " << nombre << " del "
          << (descuento * 100) << "%, nuevo precio: $" << descontado << endl;
     return descontado;
@@ -94,18 +102,22 @@ string Bebida::toString() {
     return texto;
 }
 
-// 2. Cerveza
+/**
+ * Cerveza hereda de Bebida y agrega el estilo y el IBU (amargor).
+ */
 class Cerveza : public Bebida {
 private:
     string tipo;
     float ibu; 
 
 public:
+    // Constructor
     Cerveza(string _tipo_bebida, int _stock, float _porcentaje, float _precio, 
         float _descuento, const string& _marca, const string& _pais, 
         const string& _nombre, const string& _tipo, float _ibu);
     virtual ~Cerveza(){}
     
+    // Getters
     string getTipo();
     float getIbu();
 
@@ -156,18 +168,23 @@ string Cerveza::toTexto() {
         return texto;
 }
 
-// 3. Mezcal
+/**
+ * Mezcal hereda de Bebida y tiene atributos propios como tipo de agave
+ * y si trae gusano la botella o no. 
+ */
 class Mezcal : public Bebida {
 private:
     string tipo_agave;
-    bool gusano;
+    bool gusano; // si trae gusano es true, sino es false
 
 public:
+    // Constructor
     Mezcal(string _tipo_bebida, int _stock, float _porcentaje, float _precio, 
         float _descuento, const string& _marca, const string& _pais, 
         const string& _nombre, const string& _tipo_agave, bool _gusano);
     virtual ~Mezcal(){}
 
+    // Getters
     string getTipoAgave();
     bool getGusano();
 
@@ -228,23 +245,28 @@ string Mezcal::toTexto() {
     return texto;
 }
 
-// 4. Ron
+/**
+ * Ron hereda de Bebida y agrega métodos como estilo y un booleano que 
+ * indica si es especiado o no.
+ */
 class Ron : public Bebida {
 private:
     string estilo;
     bool especias;
 
 public:
+    // Constructor
     Ron(string _tipo_bebida, int _stock, float _porcentaje, float _precio, 
         float _descuento, const string& _marca, const string& _pais, 
         const string& _nombre, const string& _estilo, bool _especias);
 
     virtual ~Ron(){}
 
+    // Getters
     string getEstilo();
     bool getEspecias();
 
-    void servir();
+    void servir(); // da sugerencias segun el estilo de ron
     string toString();
     float descontar(int cantidad);
     string toTexto();
@@ -303,19 +325,24 @@ string Ron::toTexto() {
     return texto;
 }
 
-// 5. Tequila
+/**
+ * Tequila hereda de Bebida y tiene como atributos la región de origen
+ * la categoría y si es 100% de agave o es tequila mixto.
+ */
 class Tequila : public Bebida {
 private:
     string region, categoria;
     bool agave;
 
 public:
+    // Constructor
     Tequila(string _tipo_bebida, int _stock, float _porcentaje, float _precio, 
         float _descuento, const string& _marca, const string& _pais, 
         const string& _nombre, const string& _region, const string& _categoria, 
         bool _agave);
     virtual ~Tequila(){}
     
+    // Getters
     string getRegion();
     string getCategoria();
     bool isAgave();
@@ -381,24 +408,30 @@ string Tequila::toTexto() {
         return texto;
 }
 
-// 6. Vino
+/**
+ * Vino hereda de Bebida y tiene como atributos el tipo de uva y el año
+ * de cosecha. No tiene lógica de descuento propia, usa la que hereda de
+ * la clase madre. 
+ */
 class Vino : public Bebida {
 private:
     string uva;
     int year_cosecha;
 
 public:
+    // Constructor
     Vino(string _tipo_bebida, int _stock, float _porcentaje, float _precio, 
         float _descuento, const string& _marca, const string& _pais, 
         const string& _nombre, const string& _uva, int _year_cosecha);
     virtual ~Vino(){}
     
+    // Getters
     string getUva();
     int getYearCosecha();
 
     void servir();
     string toString();
-string toTexto();
+    string toTexto();
 };
 
 Vino::Vino(string _tipo_bebida, int _stock, float _porcentaje, float _precio, 
@@ -434,18 +467,23 @@ string Vino::toTexto() {
     return texto;
 }
 
-// 7. Vodka
+/**
+ * Vodka hereda de Bebida y tiene atributos como el sabor y el no. de 
+ * destilaciones.
+ */
 class Vodka : public Bebida {
 private:
     string sabor;
     int destilaciones;
 
 public:
+    // Constructor
     Vodka(string _tipo_bebida, int _stock, float _porcentaje, float _precio, 
         float _descuento, const string& _marca, const string& _pais, 
         const string& _nombre, const string& _sabor, int _destilaciones);
     virtual ~Vodka(){}
 
+    // Getters
     string getSabor();
     int getDestilaciones();
 
@@ -497,18 +535,23 @@ string Vodka::toTexto() {
     return texto;
 }
 
-// 8. Whiskey
+/**
+ * Whiskey hereda de Bebida y tiene de atributos los años de añejamiento
+ * y el tipo de barrica. 
+ */
 class Whiskey : public Bebida {
 private:
     int years_aged; 
     string barrica;
 
 public:
+    // Constructor
     Whiskey(string _tipo_bebida, int _stock, float _porcentaje, float _precio, 
         float _descuento, const string& _marca, const string& _pais, 
         const string& _nombre, int _years_aged, const string& _barrica);
     virtual ~Whiskey(){}
     
+    // Getters
     int getYearsAged();
     string getBarrica();
 
