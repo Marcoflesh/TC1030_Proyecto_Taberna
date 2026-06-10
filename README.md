@@ -54,10 +54,10 @@ Link de tutorial para instalar el compilador g++ para poder ejecutar el proyecto
 
 ## Acceso administrador
 
-|        |             |
+|Usuario      |Contraseña             |
 |-------------|------------------|
-| Usuario     | `Marcoflecha`    |
-| Contraseña  | `TabernaMou123`  |
+|`Marcoflecha`| `TabernaMou123`  |
+ 
 
 ---
 
